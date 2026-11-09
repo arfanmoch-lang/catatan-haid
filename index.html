@@ -1,0 +1,1523 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<title>Catatan Haid</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Pencatat haid, nifas dan istihadhah menurut mazhab Syafi'i">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,500&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: satu kolom seperti buku saku, tab bawah di ponsel; linimasa darah sebagai pita 24 jam. */
+:root {
+  --bg: #f6f4f8;
+  --surface: #ffffff;
+  --surface-2: #efebf3;
+  --ink: #231d2a;
+  --muted: #6c6375;
+  --line: #e2dce8;
+  --accent: #7a2e55;
+  --accent-ink: #ffffff;
+  --haid: #a3213f;
+  --haid-soft: #f7dfe5;
+  --suci: #1f7a68;
+  --suci-soft: #d9efe9;
+  --ist: #a8701a;
+  --ist-soft: #f6ead3;
+  --nifas: #5b45a3;
+  --nifas-soft: #e5dff5;
+  --warn: #b5471b;
+  --muta: #3f6491;
+  --muta-soft: #dde7f3;
+  --focus: #7a2e55;
+  --shadow: 0 1px 2px rgba(35, 29, 42, .06), 0 6px 20px rgba(35, 29, 42, .06);
+  --font-display: "Spectral", "Georgia", "Times New Roman", serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-data: "IBM Plex Mono", "Consolas", ui-monospace, monospace;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17131b; --surface: #211b27; --surface-2: #2a2331; --ink: #f1ecf4; --muted: #b0a6b9; --line: #3a3142;
+    --accent: #e08ab3; --accent-ink: #1d1220; --haid: #f0708c; --haid-soft: #46202b; --suci: #5cc8b0; --suci-soft: #17362f;
+    --ist: #e3ae55; --ist-soft: #3d2f16; --nifas: #a996ec; --nifas-soft: #2e2747; --warn: #f08a5d; --focus: #e08ab3;
+    --muta: #8fb3e3; --muta-soft: #1c2a3d;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17131b; --surface: #211b27; --surface-2: #2a2331; --ink: #f1ecf4; --muted: #b0a6b9; --line: #3a3142;
+  --accent: #e08ab3; --accent-ink: #1d1220; --haid: #f0708c; --haid-soft: #46202b; --suci: #5cc8b0; --suci-soft: #17362f;
+  --ist: #e3ae55; --ist-soft: #3d2f16; --nifas: #a996ec; --nifas-soft: #2e2747; --warn: #f08a5d; --focus: #e08ab3;
+  --muta: #8fb3e3; --muta-soft: #1c2a3d;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { min-height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.app { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 calc(84px + env(safe-area-inset-bottom, 0px)); }
+.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-block: 18px 10px; flex-wrap: wrap; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.45rem; letter-spacing: -.01em; margin: 0; }
+.brand small { display: block; font-family: var(--font-body); font-weight: 500; font-size: .78rem; color: var(--muted); letter-spacing: .02em; }
+.sync { font-size: .78rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.sync i { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: inline-block; }
+.sync[data-s="db"] i { background: var(--suci); }
+.sync[data-s="local"] i { background: var(--ist); }
+h2 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 0; text-wrap: balance; }
+h3 { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; margin: 0; }
+.stack { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 10px; min-width: 0; }
+.muted { color: var(--muted); }
+.small { font-size: .85rem; }
+.mono, .num { font-family: var(--font-data); font-variant-numeric: tabular-nums; font-size: .9em; }
+.banner { background: var(--ist-soft); border: 1px solid color-mix(in srgb, var(--ist) 35%, transparent); border-radius: var(--r); padding: 12px 14px; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 14px; }
+.banner p { margin: 0; flex: 1 1 240px; }
+
+/* Status */
+.status { border-radius: 18px; padding: 20px; display: grid; gap: 8px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.status::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 6px; background: var(--tone, var(--suci)); }
+.status[data-t="haid"] { --tone: var(--haid); background: var(--haid-soft); }
+.status[data-t="nifas"] { --tone: var(--nifas); background: var(--nifas-soft); }
+.status[data-t="istihadhah"] { --tone: var(--ist); background: var(--ist-soft); }
+.status[data-t="suci"] { --tone: var(--suci); background: var(--suci-soft); }
+.status[data-t="naqa"] { --tone: var(--suci); background: var(--suci-soft); }
+.status[data-t="mutahayyirah"] { --tone: var(--muta); background: var(--muta-soft); }
+.status[data-t="mutahayyirah"] .label { font-size: 1.7rem; }
+.pill[data-t="mutahayyirah"] { background: var(--muta-soft); color: var(--muta); }
+.t-mutahayyirah { background: var(--muta); }
+.law-item .dot.t-mutahayyirah { background: var(--muta); }
+.status .label { font-family: var(--font-display); font-size: 2.1rem; line-height: 1.1; font-weight: 700; color: var(--tone); }
+.status .since { font-size: .95rem; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; font-size: .75rem; font-weight: 600; letter-spacing: .02em; background: var(--surface-2); color: var(--ink); white-space: nowrap; }
+.pill[data-t="haid"] { background: var(--haid-soft); color: var(--haid); }
+.pill[data-t="nifas"] { background: var(--nifas-soft); color: var(--nifas); }
+.pill[data-t="istihadhah"] { background: var(--ist-soft); color: var(--ist); }
+.pill[data-t="naqa"], .pill[data-t="suci"] { background: var(--suci-soft); color: var(--suci); }
+.pill[data-t="mandi"] { background: var(--surface-2); color: var(--accent); }
+.pill[data-t="shalat"], .pill[data-t="qadha"] { background: var(--surface-2); color: var(--ink); }
+.pill.prov { background: transparent; border: 1px dashed currentColor; color: var(--muted); }
+ul.rules { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.todo { display: grid; gap: 8px; }
+.todo .row { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
+.todo .when { font-family: var(--font-data); font-size: .8rem; color: var(--muted); }
+.kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.kv div { display: grid; gap: 2px; min-width: 0; }
+.kv b { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+.quick { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; }
+.quick label { display: grid; gap: 4px; font-size: .8rem; color: var(--muted); flex: 1 1 200px; }
+
+/* Buttons & forms */
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 9px 14px; font-weight: 600; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; justify-content: center; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.blood { background: var(--haid); border-color: var(--haid); color: #fff; }
+.btn.clean { background: var(--suci); border-color: var(--suci); color: #fff; }
+:root[data-theme="dark"] .btn.blood, :root[data-theme="dark"] .btn.clean { color: #120c15; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.blood, :root:not([data-theme="light"]) .btn.clean { color: #120c15; } }
+.btn.ghost { background: transparent; }
+.btn.danger { color: var(--warn); }
+.btn.sm { padding: 5px 10px; font-size: .82rem; border-radius: 8px; }
+.dtp { display: grid; gap: 6px; }
+.dtp-row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 8px; }
+.dtp .chips .chip { padding: 6px 11px; }
+.dtp-note { margin: 0; }
+.pred-list { display: grid; gap: 6px; }
+.pred-item { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 9px 12px; border: 1px dashed var(--haid); border-radius: 10px; }
+.t-pred { background: repeating-linear-gradient(135deg, var(--haid-soft) 0 3px, transparent 3px 6px); outline: 1px dashed var(--haid); outline-offset: -1px; }
+.day-acts { display: flex; gap: 8px; flex-wrap: wrap; }
+input[type="date"], input[type="time"], input[type="datetime-local"], input[type="number"], input[type="text"], select, textarea { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; min-width: 0; }
+textarea { font-family: var(--font-data); font-size: .8rem; min-height: 120px; }
+.field { display: grid; gap: 4px; }
+.field > span { font-size: .8rem; color: var(--muted); font-weight: 500; }
+.check { display: flex; gap: 8px; align-items: center; font-size: .9rem; }
+.row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.err { color: var(--warn); font-size: .85rem; margin: 0; }
+
+/* Catatan */
+.entries { display: grid; gap: 8px; }
+.entry { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.entry .t { font-weight: 600; }
+.entry .d { font-size: .85rem; color: var(--muted); }
+.entry .acts { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.empty { padding: 22px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
+
+/* Kalender */
+.cal-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cal .dow { font-size: .72rem; color: var(--muted); text-align: center; font-weight: 600; letter-spacing: .04em; padding-bottom: 2px; }
+.day { border: 1px solid var(--line); background: var(--surface); border-radius: 9px; min-height: 58px; padding: 5px 5px 6px; display: grid; grid-template-rows: auto 1fr auto; gap: 3px; cursor: pointer; text-align: left; min-width: 0; }
+.day.out { opacity: .45; }
+.day.today { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.day.sel { background: var(--surface-2); }
+.day.pred { border-style: dashed; border-color: var(--haid); }
+.day .n { font-family: var(--font-data); font-size: .78rem; }
+.bar { height: 8px; border-radius: 4px; background: var(--surface-2); position: relative; overflow: hidden; }
+.bar span { position: absolute; top: 0; bottom: 0; }
+.t-haid { background: var(--haid); }
+.t-nifas { background: var(--nifas); }
+.t-istihadhah { background: var(--ist); }
+.t-naqa { background: repeating-linear-gradient(135deg, var(--haid) 0 2px, transparent 2px 5px); }
+.marks { display: flex; gap: 3px; min-height: 8px; }
+.marks i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: block; }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 8px; border-radius: 3px; display: inline-block; }
+.daybar24 { height: 14px; border-radius: 6px; background: var(--surface-2); position: relative; overflow: hidden; }
+.daybar24 span { position: absolute; top: 0; bottom: 0; }
+.ticks { display: flex; justify-content: space-between; font-family: var(--font-data); font-size: .7rem; color: var(--muted); }
+
+/* Hukum */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-size: .82rem; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.law { display: grid; gap: 0; }
+.law-item { display: grid; grid-template-columns: 18px 1fr; gap: 10px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.law-item:last-child { border-bottom: 0; }
+.law-item .dot { width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; background: var(--muted); }
+.law-item .dot.t-naqa { background: var(--suci); }
+.law-item .dot.t-haid { background: var(--haid); }
+.law-item .dot.t-nifas { background: var(--nifas); }
+.law-item .dot.t-istihadhah { background: var(--ist); }
+.law-item .dot.ev { background: transparent; border: 2px solid var(--accent); }
+.law-item .body { display: grid; gap: 5px; min-width: 0; }
+.law-item .head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.law-item .range { font-family: var(--font-data); font-size: .82rem; }
+.law-item p { margin: 0; }
+.ref { font-size: .78rem; color: var(--muted); border-left: 2px solid var(--line); padding-left: 8px; }
+
+/* Panduan */
+details.guide { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+details.guide summary { cursor: pointer; font-weight: 600; }
+details.guide[open] summary { margin-bottom: 8px; }
+.bait { font-family: var(--font-display); font-style: italic; color: var(--muted); margin: 6px 0 0; padding-left: 10px; border-left: 2px solid var(--haid-soft); white-space: pre-line; }
+
+/* Tabs */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--line); display: flex; justify-content: center; padding-bottom: env(safe-area-inset-bottom, 0px); padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); z-index: 5; }
+.tabs .in { display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; max-width: 760px; }
+.tab { background: none; border: 0; padding: 9px 2px 10px; font-size: .74rem; font-weight: 600; color: var(--muted); display: grid; justify-items: center; gap: 3px; cursor: pointer; }
+.tab svg { width: 22px; height: 22px; }
+.tab[aria-selected="true"] { color: var(--accent); }
+
+/* Sheet */
+.sheet-wrap { position: fixed; inset: 0; background: rgba(20, 14, 24, .45); display: grid; align-items: end; justify-items: center; z-index: 20; padding-top: env(safe-area-inset-top, 0px); }
+.sheet { background: var(--surface); width: 100%; max-width: 560px; border-radius: 18px 18px 0 0; padding: 18px max(16px, env(safe-area-inset-left, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 14px; max-height: 92vh; overflow: auto; }
+@media (min-width: 640px) { .sheet-wrap { align-items: center; } .sheet { border-radius: 18px; } }
+.sheet .acts { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(80px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 9px 16px; border-radius: 999px; font-size: .88rem; z-index: 30; max-width: calc(100% - 32px); }
+@media (prefers-reduced-motion: no-preference) { .view { animation: fade .18s ease-out; } @keyframes fade { from { opacity: .4; transform: translateY(4px); } to { opacity: 1; transform: none; } } }
+@media (min-width: 900px) { .app { padding-block: 0 96px; } }
+</style>
+
+<div class="app">
+  <header class="top">
+    <h1 class="brand">Catatan Haid<small>Haid · Nifas · Istihadhah — mazhab Syafi'i</small></h1>
+    <div class="sync" id="sync" data-s="wait"><i></i><span>Memuat catatan…</span></div>
+  </header>
+
+  <div class="banner" id="demoBanner" hidden>
+    <p><b>Ini data contoh.</b> Isinya bukan catatan Anda, hanya untuk memperlihatkan cara kerja aplikasi. Catatan pertama yang Anda tambahkan akan menggantikan contoh ini.</p>
+    <button class="btn primary sm" id="demoClear" type="button">Mulai mencatat</button>
+  </div>
+
+  <main>
+    <section class="view stack" id="v-hariini" aria-label="Hari ini"></section>
+    <section class="view stack" id="v-catatan" aria-label="Catatan" hidden></section>
+    <section class="view stack" id="v-kalender" aria-label="Kalender" hidden></section>
+    <section class="view stack" id="v-hukum" aria-label="Riwayat hukum" hidden></section>
+    <section class="view stack" id="v-lainnya" aria-label="Lainnya" hidden></section>
+  </main>
+</div>
+
+<nav class="tabs" aria-label="Menu utama">
+  <div class="in" role="tablist">
+    <button class="tab" role="tab" data-v="hariini" aria-selected="true" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.5 4.2 6 7.6 6 10.6A6 6 0 0 1 6 13.6C6 10.6 8.5 7.2 12 3z"/></svg>Hari ini</button>
+    <button class="tab" role="tab" data-v="catatan" aria-selected="false" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"/><path d="M9 10h6M9 14h6M9 18h3"/></svg>Catatan</button>
+    <button class="tab" role="tab" data-v="kalender" aria-selected="false" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Kalender</button>
+    <button class="tab" role="tab" data-v="hukum" aria-selected="false" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C6.5 4 9.5 4 12 5.5v14C9.5 18 6.5 18 4 19.5zM20 5.5C17.5 4 14.5 4 12 5.5v14c2.5-1.5 5.5-1.5 8 0z"/></svg>Hukum</button>
+    <button class="tab" role="tab" data-v="lainnya" aria-selected="false" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg>Lainnya</button>
+  </div>
+</nav>
+
+<div class="sheet-wrap" id="sheetWrap" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>/* Mesin hukum haid, nifas dan istihadhah (qaul tsani, mazhab Syafi'i).
+ * Rujukan: "Dan Mereka Bertanya Kepadamu Tentang Haid" (Nur Hasyim S. Anam)
+ * Edisi 2017, Jilid 1-3, dan "Bait-Bait Haid".
+ * Semua waktu dalam milidetik (epoch). Fungsi murni: analyze(data, now).
+ */
+(function (root) {
+  const MIN = 60e3, H = 60 * MIN, D = 24 * H, F = 15 * D, N60 = 60 * D;
+
+  const REF = {
+    masaHaid: { src: 'DMBK Edisi 2017, Bab Haid D (Masa Haid); Jilid 1 Bab E', bait: '14-17' },
+    bersih24: { src: 'Jilid 1 Bab E (bersih setelah 24 jam, pendapat mu\'tamad)', bait: '18-21' },
+    naqa: { src: 'DMBK Bab Haid D (qaul sahbi & laqthi)', bait: '26-27' },
+    penyempurna: { src: 'DMBK Bab Haid F; Jilid 1 Bab G (konsep menyempurnakan suci)', bait: '34-37' },
+    lanjutan: { src: 'Jilid 1 Bab G (darah kedua dalam 15 hari)', bait: '38-41' },
+    istihadhah: { src: 'DMBK Bab Haid G; Jilid 1 Bab I (kembali ke haid & suci terakhir)', bait: '42-44, 112-115' },
+    urutan: { src: 'DMBK Bab Haid G (adat beraturan, minimal berulang dua kali)', bait: '113-115' },
+    mandiMustahadhah: { src: 'DMBK Bab Haid H (waktu mandi mustahadhah)', bait: '45-46' },
+    pindahAdat: { src: 'Jilid 3 Bab D (tidak ada darah di masa adat)', bait: 'Lagu Kaidah: "Tak ada darah saat adatnya..."' },
+    sebagianAdat: { src: 'Jilid 3 Bab D (darah hanya sebagian masa adat)', bait: '-' },
+    perubahanSiklus: { src: 'Jilid 3 Bab C (perubahan siklus)', bait: '-' },
+    pemula: { src: 'DMBK Bab Mustahadhah E; Jilid 3 Bab A (pemula hanya siklus pertama)', bait: '103' },
+    fasad: { src: 'DMBK Bab Haid D (darah kurang dari 24 jam bukan haid)', bait: '16-18' },
+    nifas: { src: 'DMBK Bab Nifas A-B', bait: '50-53' },
+    nifasLebih: { src: 'DMBK Bab Nifas D pendapat ke-2', bait: '61-63' },
+    nifasHaid: { src: 'DMBK Bab Nifas B-C (jarak 15 hari setelah melahirkan)', bait: '53, 56-60' },
+    mutahayyirah: { src: 'Jilid 2 Bab I (lupa kebiasaan haid) dan Bab J (hukum mutahayyirah); DMBK Bab Mustahadhah H-I', bait: '119-135' },
+  };
+
+  function predict(list) {
+    const n = list.length;
+    if (!n) return null;
+    for (let p = 2; p <= Math.floor(n / 2); p++) {
+      let ok = true;
+      for (let i = 0; i < p; i++) {
+        if (Math.abs(list[n - 2 * p + i] - list[n - p + i]) >= MIN) { ok = false; break; }
+      }
+      if (ok) {
+        const seq = list.slice(n - p);
+        if (seq.some(v => Math.abs(v - seq[0]) >= MIN)) return { value: list[n - p], pattern: seq };
+      }
+    }
+    return { value: list[n - 1], pattern: null };
+  }
+
+  function analyze(data, now) {
+    now = now == null ? Date.now() : now;
+    const lupaAdat = !!(data.settings && data.settings.lupaAdat);
+    const births = (data.births || []).map(b => ({ t: +b.time, kind: b.kind || 'lahir', id: b.id }))
+      .filter(b => isFinite(b.t) && b.t <= now).sort((a, b) => a.t - b.t);
+
+    // 1. Normalisasi darah: urutkan, gabungkan yang bertumpuk, potong di waktu melahirkan.
+    let raw = (data.bloods || []).map(b => ({ s: +b.start, e: b.end == null ? now : +b.end, open: b.end == null }))
+      .filter(b => isFinite(b.s) && b.s <= now && b.e > b.s).sort((a, b) => a.s - b.s);
+    const merged = [];
+    for (const b of raw) {
+      const last = merged[merged.length - 1];
+      if (last && b.s <= last.e) { if (b.e >= last.e) { last.e = b.e; last.open = b.open; } }
+      else merged.push({ ...b });
+    }
+    let bl = [];
+    for (const b of merged) {
+      let cur = { ...b };
+      for (const br of births) {
+        if (br.t > cur.s && br.t < cur.e) { bl.push({ s: cur.s, e: br.t, open: false }); cur = { s: br.t, e: cur.e, open: cur.open }; }
+      }
+      bl.push(cur);
+    }
+
+    const bloodIn = (a, b) => { let t = 0; for (const x of bl) { const s = Math.max(a, x.s), e = Math.min(b, x.e); if (e > s) t += e - s; } return t; };
+    const firstBloodAtOrAfter = (t, limit = Infinity) => { for (const x of bl) { if (x.e > t && x.s < limit) return Math.max(t, x.s); } return null; };
+    const lastBloodPointIn = (a, b) => { let r = null; for (const x of bl) { const s = Math.max(a, x.s), e = Math.min(b, x.e); if (e > s) r = e; } return r; };
+    const lastBloodEndBefore = (t, after) => { let r = null; for (const x of bl) { const e = Math.min(x.e, t); if (e > after && x.s < t) r = e; } return r; };
+    const isOpenAt = t => bl.some(x => x.open && x.s <= t && x.e >= t);
+    const nextBirthAfter = t => { for (const b of births) if (b.t > t) return b; return null; };
+    const blockStarts = (a, b) => bl.filter(x => x.s >= a && x.s < b).map(x => x.s);
+
+    // chain: interval darah mulai h yang dimulai sebelum h+F (dan sebelum batas melahirkan)
+    function chainFrom(h, limit) {
+      let end = h, open = false;
+      for (const x of bl) {
+        if (x.e <= h) continue;
+        if (x.s >= Math.min(h + F, limit)) break;
+        end = Math.max(end, Math.min(x.e, limit));
+        if (x.open && x.e > h) open = true;
+      }
+      return { end, open };
+    }
+
+    const periods = [];   // haid & nifas: {type,start,end,provisional,reason,ref,notes[]}
+    const istReasons = []; // {start,end,reason,ref}
+    const events = [];     // {time,kind,text,ref}
+    const hH = [], hS = [];
+    let lastHaidEnd = null, lastHaidStart = null, purityRef = null, skipSuci = false;
+    let mode = null;       // keterangan mustahadhah yang sedang berjalan
+    let cursor = -Infinity;
+    let usedBirth = -Infinity;
+    let guard = 0;
+
+    const addPeriod = (p) => { periods.push(p); return p; };
+    const addIst = (s, e, reason, ref) => { if (e > s) istReasons.push({ start: s, end: e, reason, ref }); };
+    const ev = (time, kind, text, ref) => events.push({ time, kind, text, ref });
+
+    function pushSuci(v) { if (v != null && v > 0) hS.push(v); }
+
+    // ---------------- Mode mustahadhah ----------------
+    function runMode(st) {
+      // st: {X, first, prevHaidEnd, pendingSuci, mustStart, limit}
+      let { X, first, prevHaidEnd, pendingSuci, mustStart } = st;
+      const limitBirth = nextBirthAfter(Math.max(X - 1, prevHaidEnd || X - 1));
+      const limit = limitBirth ? limitBirth.t : Infinity;
+      let cyc = 0;
+      while (guard++ < 5000) {
+        const pH = predict(hH);
+        const aH = pH ? pH.value : D;
+        const patternNote = pH && pH.pattern ? ' (mengikuti urutan adat yang berulang)' : '';
+        if (X >= limit || X > now) { mode = { X, aH, prevHaidEnd, mustStart, waiting: X > now }; return { stop: X > now ? 'future' : 'birth', at: Math.min(limit, cursorEnd()) }; }
+
+        // C1: bersih >= 15 hari setelah haid terakhir -> mustahadhah selesai, siklus baru
+        const c1 = cleanGapF(first || prevHaidEnd == null ? mustStart : Math.max(prevHaidEnd, mustStart), X + aH);
+        if (c1 != null) { addIstBetween(prevHaidEnd, c1.gapStart, first ? mustStart : null); return { stop: 'c1', at: c1.next }; }
+
+        const W0 = X, W1 = Math.min(X + aH, limit);
+        const bIn = bloodIn(W0, W1);
+        let hStart = null, hEnd = null, shifted = null;
+
+        if (bIn >= D) {
+          hStart = firstBloodAtOrAfter(W0, W1);
+        } else {
+          // tidak ada darah (cukup) di masa adat: pindah ke darah sebelum/sesudahnya
+          let earlier = null, later = null;
+          if (bIn === 0 && prevHaidEnd != null) {
+            const E = lastBloodEndBefore(X, prevHaidEnd);
+            if (E != null) {
+              const hs = Math.max(E - aH, prevHaidEnd + F);
+              if (hs < E && bloodIn(hs, E) >= D) earlier = { hs, E, dist: X + aH - E };
+            }
+          }
+          const cands = [X, ...blockStarts(X, limit)];
+          for (const t0 of cands) {
+            const t = firstBloodAtOrAfter(t0, limit);
+            if (t == null) break;
+            // jangan melewati jeda bersih >= 15 hari
+            const lb = lastBloodEndBefore(t, prevHaidEnd != null ? prevHaidEnd : mustStart);
+            if (lb != null && t - lb >= F && t > X) break;
+            if (bloodIn(t, Math.min(t + aH, limit)) >= D) { later = { t, dist: t - X }; break; }
+          }
+          // pindah ke darah sebelumnya hanya bila ada darah sesudahnya untuk dibandingkan
+          if (earlier && later && earlier.dist < later.dist) {
+            shifted = 'earlier';
+            hStart = earlier.hs; hEnd = earlier.E;
+          } else if (later) {
+            shifted = 'later';
+            hStart = later.t;
+          } else {
+            mode = { X, aH, prevHaidEnd, mustStart, waiting: true };
+            addIstBetween(prevHaidEnd, Math.min(now, limit), first ? mustStart : null);
+            return { stop: 'nodata', at: null };
+          }
+        }
+
+        // C2: darah sejak awal haid berhenti sebelum 15 hari -> haid semua
+        if (shifted !== 'earlier') {
+          const ch = chainFrom(hStart, limit);
+          const closed = !ch.open || now >= hStart + F;
+          if (closed && ch.end <= hStart + F && !first) {
+            addIstBetween(prevHaidEnd, hStart, null);
+            const p = addPeriod({ type: 'haid', start: hStart, end: ch.end, provisional: false,
+              reason: 'Pada siklus ini darah berhenti sebelum 15 hari sejak awal haid, maka semuanya haid (bukan lagi mustahadhah). Jumlahnya menjadi adat haid yang baru.',
+              ref: REF.perubahanSiklus });
+            const adatEnd = hStart + aH;
+            if (adatEnd < ch.end) ev(adatEnd, 'mandi', 'Mandi setelah masa adat haid berakhir (karena masih mustahadhah).', REF.mandiMustahadhah);
+            ev(ch.end, 'mandi', 'Mandi lagi saat darah benar-benar bersih. Darah ternyata tidak lebih dari 15 hari, maka semuanya haid. Puasa yang dikerjakan di antara dua mandi wajib diqadha.', REF.mandiMustahadhah);
+            if (prevHaidEnd != null) pushSuci(hStart - prevHaidEnd);
+            hH.push(ch.end - hStart);
+            lastHaidStart = hStart; lastHaidEnd = ch.end; purityRef = ch.end;
+            p.notes = ['Adat haid baru: ' + fmtDur(ch.end - hStart)];
+            return { stop: 'c2', at: ch.end };
+          }
+        }
+
+        if (hEnd == null) {
+          const wEnd = Math.min(hStart + aH, limit);
+          hEnd = shifted === 'later' ? (lastBloodPointIn(hStart, wEnd) || wEnd) : (lastBloodPointIn(W0, W1) || W1);
+          // bila darah memenuhi seluruh masa adat, haid = masa adat penuh
+          if (bloodIn(hStart, wEnd) >= wEnd - hStart - MIN) hEnd = wEnd;
+        }
+
+        // istihadhah di antara haid sebelumnya dan haid ini
+        addIstBetween(prevHaidEnd, hStart, first ? mustStart : null);
+
+        let reason, ref;
+        if (first) {
+          reason = !st.pemula
+            ? 'Darah melebihi 15 hari 15 malam, maka haidnya disamakan dengan adat haid terakhir' + patternNote + ': ' + fmtDur(aH) + '. Selebihnya istihadhah.'
+            : 'Mustahadhah pemula yang tidak dapat membedakan darah: haid sehari semalam (24 jam), suci 29 hari. Siklus ini menjadi adat untuk berikutnya. Jika sebenarnya Anda sudah pernah haid sebelum catatan pertama tetapi lupa adatnya, aktifkan pilihan "Sudah pernah haid tetapi lupa adat" di menu Lainnya, karena hukumnya berbeda (mutahayyirah).';
+          ref = st.pemula ? REF.pemula : REF.istihadhah;
+        } else if (shifted === 'earlier') {
+          reason = 'Pada masa adat tidak ada darah. Darah sebelumnya lebih dekat daripada darah sesudahnya, maka haid pindah (maju) ke akhir darah sebelumnya' + (hEnd - hStart < aH - MIN ? ', terbatas karena suci minimal 15 hari' : '') + '. Adat suci berubah.';
+          ref = REF.pindahAdat;
+        } else if (shifted === 'later') {
+          reason = 'Pada masa adat tidak ada darah (atau kurang dari 24 jam), maka haid pindah ke darah sesudahnya. Adat suci bertambah.';
+          ref = REF.pindahAdat;
+        } else if (hStart > W0 + MIN || hEnd < W1 - MIN) {
+          reason = 'Mustahadhah: pada masa adat hanya sebagian yang ada darahnya, maka haidnya hanya darah yang keluar di masa adat. Siklus tidak berubah.';
+          ref = REF.sebagianAdat;
+        } else {
+          reason = 'Mustahadhah: haid disamakan dengan adat haid' + patternNote + ' (' + fmtDur(aH) + '), lalu suci sesuai adat suci.';
+          ref = REF.istihadhah;
+        }
+        const prov = hEnd > now || (first && now < mustStart + F);
+        addPeriod({ type: 'haid', start: hStart, end: Math.min(hEnd, now), provisional: prov, reason, ref, mustahadhah: true });
+
+        if (first) {
+          ev(mustStart + F, 'mandi', 'Siklus pertama istihadhah: mandi setelah lewat 15 hari 15 malam sejak darah keluar.', REF.mandiMustahadhah);
+          if (mustStart + F > hEnd) ev(mustStart + F, 'qadha-rentang', JSON.stringify({ from: hEnd, to: mustStart + F }), REF.mandiMustahadhah);
+        } else if (shifted === 'earlier') {
+          ev(hEnd, 'mandi', 'Haid pindah ke darah sebelumnya: wajib mandi saat menyadarinya, dan mengqadha ibadah (shalat/puasa) yang dikerjakan dalam masa itu.', REF.pindahAdat);
+        } else {
+          ev(hEnd, 'mandi', 'Mandi segera setelah masa adat haid selesai, lalu berlaku hukum istihadhah (wajib shalat).', REF.mandiMustahadhah);
+        }
+
+        // perbarui adat
+        if (prevHaidEnd != null) {
+          if (shifted) pushSuci(hStart - prevHaidEnd);
+          else if (pendingSuci != null) pushSuci(pendingSuci);
+          else pushSuci(hStart - prevHaidEnd);
+        }
+        hH.push(aH);
+        lastHaidStart = hStart; lastHaidEnd = hEnd; purityRef = hEnd;
+        const pS = predict(hS);
+        const aS = pS ? pS.value : 29 * D;
+        if (shifted === 'earlier') X = hEnd + aS;
+        else if (shifted === 'later') X = hStart + aH + aS;
+        else X = W0 + aH + aS;
+        pendingSuci = aS;
+        prevHaidEnd = hEnd;
+        first = false; cyc++;
+      }
+      return { stop: 'guard', at: null };
+    }
+
+    function cursorEnd() { return bl.length ? bl[bl.length - 1].e : now; }
+
+    // jeda bersih >= 15 hari setelah 'from' dan sebelum 'until'
+    function cleanGapF(from, until) {
+      if (from == null) return null;
+      let prevEnd = from;
+      for (const x of bl) {
+        if (x.e <= from) continue;
+        const s = Math.max(x.s, from);
+        if (s - prevEnd >= F && prevEnd < until) return { gapStart: prevEnd, next: s };
+        if (s >= until) break;
+        prevEnd = Math.max(prevEnd, x.e);
+      }
+      return null;
+    }
+
+    function addIstBetween(a, b, firstStart) {
+      if (a == null || b == null || b <= a) return;
+      addIst(a, b, firstStart != null
+        ? 'Darah setelah masa adat haid pada siklus pertama istihadhah: hukumnya istihadhah (suci). Shalat yang ditinggalkan wajib diqadha.'
+        : 'Darah di luar masa adat haid: istihadhah (darah penyakit), hukumnya suci. Wajib shalat dan puasa seperti daimul hadats.', REF.istihadhah);
+    }
+
+    // ---------------- Proses normal ----------------
+    let t = -Infinity;
+    while (guard++ < 5000) {
+      const p = firstBloodAtOrAfter(t);
+      if (p == null) break;
+
+      // melahirkan yang sudah dilewati: suci tidak harus 15 hari
+      for (const b of births) if (b.t > usedBirth && b.t <= p) { usedBirth = b.t; purityRef = null; skipSuci = true; mode = null; }
+      const lastBirth = births.filter(b => b.t <= p).pop();
+      const nb = nextBirthAfter(p);
+      const limit = nb ? nb.t : Infinity;
+
+      // ---- NIFAS ----
+      if (lastBirth && p - lastBirth.t < F && p < lastBirth.t + N60 && !lastBirth.done) {
+        lastBirth.done = true;
+        const b = lastBirth.t, cap = Math.min(b + N60, limit);
+        let end = p, open = false, exceed = false, prevE = p;
+        for (const x of bl) {
+          if (x.e <= p) continue;
+          if (x.s >= cap) break;
+          if (x.s - prevE >= F) break; // putus 15 hari: sesudahnya bukan nifas
+          if (x.e > cap) { exceed = x.e > b + N60 && cap === b + N60; end = cap; open = x.open; prevE = cap; break; }
+          end = x.e; open = x.open; prevE = x.e;
+        }
+        const finalN = !open || now >= b + N60;
+        addPeriod({ type: 'nifas', start: p, end: Math.min(end, now), provisional: !finalN,
+          reason: 'Darah setelah ' + (lastBirth.kind === 'keguguran' ? 'keguguran' : 'melahirkan') + ' (keluar kurang dari 15 hari setelahnya) adalah nifas. Paling lama 60 hari dihitung sejak melahirkan.',
+          ref: REF.nifas });
+        if (finalN && !exceed) ev(end, 'mandi', 'Mandi nifas (sekaligus mandi wiladah) setelah darah nifas bersih.', REF.nifas);
+        purityRef = null; skipSuci = true;
+        if (exceed) {
+          ev(b + N60, 'mandi', 'Nifas sudah genap 60 hari: mandi, lalu berlaku hukum suci/istihadhah.', REF.nifasLebih);
+          const pS = predict(hS);
+          if (pS && hH.length) {
+            const r = runMode({ X: b + N60 + pS.value, first: false, prevHaidEnd: b + N60, pendingSuci: pS.value, mustStart: b + N60 });
+            if (r.at == null) break; t = r.at; continue;
+          } else {
+            const ch = (function () { let e = b + N60; for (const x of bl) { if (x.e <= e) continue; if (x.s > e + MIN) break; e = x.e; } return e; })();
+            addIst(b + N60, ch, 'Darah melebihi 60 hari setelah melahirkan. Belum ada adat haid dan suci yang tercatat, maka sisanya dihukumi istihadhah. Kasus ini sebaiknya dikonsultasikan ke ustadzah.', REF.nifasLebih);
+            t = ch; continue;
+          }
+        }
+        t = end; continue;
+      }
+
+      // ---- HAID ----
+      let h0 = p;
+      if (purityRef != null && p < purityRef + F) {
+        const until = Math.min(purityRef + F, limit);
+        const istEnd = Math.min(until, chainSimple(p, until));
+        addIst(p, istEnd, 'Darah keluar setelah 15 hari dari awal haid sebelumnya, tetapi masa sucinya belum genap 15 hari. Maka darah ini menjadi penyempurna suci (istihadhah) sampai suci genap 15 hari.', REF.penyempurna);
+        const nxt = firstBloodAtOrAfter(until);
+        if (nxt == null) break;
+        if (nxt > until) { t = nxt; continue; }
+        h0 = until;
+      }
+
+      const ch = chainFrom(h0, limit);
+      const exceed = ch.end > h0 + F && bloodIn(h0 + F, ch.end) > 0;
+      if (!exceed) {
+        const total = bloodIn(h0, ch.end);
+        const stillPossible = ch.open || now < h0 + F;
+        if (total >= D || (ch.open && now < h0 + D)) {
+          const p1 = addPeriod({ type: 'haid', start: h0, end: Math.min(ch.end, now), provisional: stillPossible,
+            reason: total < D
+              ? 'Darah baru keluar kurang dari 24 jam. Untuk sementara tinggalkan shalat. Jika berhenti sebelum genap 24 jam, darah ini bukan haid dan shalat yang ditinggalkan wajib diqadha.'
+              : (bloodIn(h0, ch.end) < ch.end - h0 - MIN
+                ? 'Darah putus-putus dalam 15 hari, namun jumlahnya mencapai 24 jam, maka dihukumi haid. Masa bersih di sela-selanya diperselisihkan (sahbi: haid, laqthi: suci).'
+                : 'Darah keluar tidak kurang dari 24 jam dan tidak lebih dari 15 hari 15 malam, maka dihukumi haid.'),
+            ref: total < D ? REF.fasad : REF.masaHaid, early: total < D });
+          // mandi tiap kali bersih setelah darah mencapai 24 jam
+          let cum = 0;
+          for (const x of bl) {
+            if (x.e <= h0 || x.s >= ch.end) continue;
+            cum += Math.min(x.e, ch.end) - Math.max(x.s, h0);
+            if (!x.open && x.e < ch.end) ev(x.e, cum >= D ? 'mandi' : 'info', cum >= D
+              ? 'Darah berhenti setelah mencapai 24 jam: wajib mandi dan shalat (pendapat mu\'tamad). Jika darah keluar lagi sebelum hari ke-15, berlaku haid lagi.'
+              : 'Darah berhenti sebelum 24 jam: wajib shalat (cukup bersuci, belum mandi haid). Jika darah keluar lagi dan jumlahnya mencapai 24 jam dalam 15 hari, semuanya haid.', cum >= D ? REF.bersih24 : REF.fasad);
+          }
+          if (!ch.open && total >= D) ev(ch.end, 'mandi', 'Darah bersih: wajib mandi haid lalu shalat.' + (now < h0 + F ? ' Jika darah keluar lagi sebelum genap 15 hari sejak awal haid, kembali berlaku haid.' : ''), REF.bersih24);
+          if (lastHaidEnd != null && !skipSuci) pushSuci(h0 - lastHaidEnd);
+          skipSuci = false;
+          if (total >= D) hH.push(ch.end - h0);
+          lastHaidStart = h0; lastHaidEnd = ch.end; purityRef = ch.end;
+          p1.adatAfter = { haid: predict(hH), suci: predict(hS) };
+        } else {
+          addIst(h0, ch.end, 'Darah yang keluar dalam 15 hari jumlahnya tidak mencapai 24 jam, maka bukan haid (darah fasad/istihadhah). Shalat yang ditinggalkan selama darah keluar wajib diqadha.', REF.fasad);
+          ev(ch.end, 'qadha-fasad', JSON.stringify({ from: h0, to: ch.end }), REF.fasad);
+        }
+        t = ch.end; continue;
+      }
+
+      // ---- MUSTAHADHAH ----
+      const pemula = !hH.length;
+      if (pemula && lupaAdat) {
+        // Bukan pemula tetapi lupa adat (jumlah dan waktunya): mutahayyirah selama istihadhah berlangsung
+        let end = h0, prevE = h0;
+        for (const x of bl) {
+          if (x.e <= h0) continue;
+          if (x.s >= limit) break;
+          if (x.s - prevE >= F) break; // bersih 15 hari: istihadhah selesai
+          end = Math.min(x.e, limit); prevE = end;
+        }
+        addPeriod({ type: 'mutahayyirah', start: h0, end: Math.min(end, now), provisional: end >= now,
+          reason: 'Darah melebihi 15 hari 15 malam, sedangkan Anda sudah pernah haid tetapi lupa adat haid (jumlah dan waktunya). Maka berlaku hukum mutahayyirah: hukum haid dalam segala hal, kecuali talak, membaca Al-Qur\'an dengan niat belajar, ibadah yang butuh niat (shalat, puasa, i\'tikaf), dan masuk masjid untuk ibadah. Hukum ini berlaku sampai darah bersih 15 hari.',
+          ref: REF.mutahayyirah });
+        ev(h0 + F, 'info', 'Darah melewati 15 hari 15 malam dan adat haid tidak diketahui: mulai sekarang berlaku hukum mutahayyirah. Wajib shalat setiap waktu dan qadha shalat 2 hari setiap bulan; suami haram menggauli. Shalat yang ditinggalkan selama 15 hari pertama sebaiknya ditanyakan kepada ustadzah.', REF.mutahayyirah);
+        purityRef = null; skipSuci = true;
+        t = end; continue;
+      }
+      if (lastHaidEnd != null && !skipSuci) { /* suci didorong di runMode */ }
+      const r = runMode({ X: h0, first: true, prevHaidEnd: pemula ? null : (skipSuci ? null : lastHaidEnd), pendingSuci: (lastHaidEnd != null && !skipSuci) ? h0 - lastHaidEnd : null, mustStart: h0, pemula });
+      skipSuci = false;
+      if (r.at == null) break;
+      t = r.at;
+    }
+
+    function chainSimple(p, until) { let e = p; for (const x of bl) { if (x.e <= e) continue; if (x.s > e + MIN) break; e = x.e; } return e; }
+
+    // ---------------- Susun linimasa ----------------
+    periods.sort((a, b) => a.start - b.start);
+    const timeline = [];
+    const covered = (s, e) => periods.filter(p => p.end > s && p.start < e);
+    for (const x of bl) {
+      // bagian darah yang tidak tercakup haid/nifas -> istihadhah
+      let pieces = [{ s: x.s, e: x.e }];
+      for (const p of covered(x.s, x.e)) {
+        pieces = pieces.flatMap(q => {
+          const out = [];
+          if (p.start > q.s) out.push({ s: q.s, e: Math.min(q.e, p.start) });
+          if (p.end < q.e) out.push({ s: Math.max(q.s, p.end), e: q.e });
+          return out.filter(o => o.e > o.s);
+        });
+      }
+      for (const q of pieces) {
+        const rs = istReasons.find(r => r.start <= q.s + MIN && r.end >= q.s + 1) || istReasons.find(r => r.end > q.s && r.start < q.e);
+        timeline.push({ type: 'istihadhah', start: q.s, end: q.e, provisional: x.open && q.e >= now,
+          reason: rs ? rs.reason : 'Darah di luar masa haid/nifas: istihadhah, hukumnya suci (wajib shalat dan puasa).', ref: rs ? rs.ref : REF.istihadhah });
+      }
+    }
+    for (const p of periods) {
+      timeline.push(p);
+      if (p.type === 'mutahayyirah') continue;
+      // celah bersih di dalam haid/nifas
+      let prev = p.start;
+      for (const x of bl) {
+        if (x.e <= p.start || x.s >= p.end) continue;
+        if (x.s > prev + MIN) timeline.push({ type: 'naqa', start: prev, end: x.s, parent: p.type, reason: 'Masa bersih di sela-sela ' + p.type + '. Qaul sahbi menghukuminya ' + p.type + ', qaul laqthi menghukuminya suci. Menurut pendapat mu\'tamad, saat bersih wajib mandi dan shalat.', ref: REF.naqa });
+        prev = Math.max(prev, x.e);
+      }
+    }
+    timeline.sort((a, b) => a.start - b.start || (a.type === 'naqa' ? 1 : -1));
+    events.sort((a, b) => a.time - b.time);
+
+    const pH = predict(hH), pS = predict(hS);
+    let nextHaid = null;
+    if (mode && mode.waiting) nextHaid = mode.X;
+    else if (lastHaidStart != null && pH && pS) nextHaid = lastHaidEnd + pS.value;
+
+    return {
+      timeline, periods, events, births,
+      adat: { haid: pH, suci: pS, haidList: hH.slice(), suciList: hS.slice() },
+      lastHaid: lastHaidStart != null ? { start: lastHaidStart, end: lastHaidEnd } : null,
+      nextHaid, mode, bloods: bl, now,
+    };
+  }
+
+  function fmtDur(ms) {
+    if (ms == null) return '-';
+    const neg = ms < 0; ms = Math.abs(Math.round(ms / MIN)) * MIN;
+    const d = Math.floor(ms / D), h = Math.floor((ms % D) / H), m = Math.round((ms % H) / MIN);
+    const parts = [];
+    if (d) parts.push(d + ' hari');
+    if (h) parts.push(h + ' jam');
+    if (m) parts.push(m + ' menit');
+    return (neg ? '-' : '') + (parts.join(' ') || '0 menit');
+  }
+
+  // Perkiraan n haid berikutnya dari adat (mengikuti urutan adat bila beraturan).
+  // defaultCycle: panjang siklus (ms) untuk perkiraan awal bila adat suci belum diketahui (baru satu haid).
+  function forecast(r, n, defaultCycle) {
+    if (!r) return [];
+    const hH = r.adat.haidList.slice(), hS = r.adat.suciList.slice();
+    if (!hH.length) return [];
+    if (r.nextHaid == null) {
+      if (hS.length || !r.lastHaid || !defaultCycle) return [];
+      // Perkiraan awal: belum ada adat suci, pakai siklus perkiraan (suci minimal 15 hari).
+      const h = predict(hH).value;
+      const cyc = Math.max(defaultCycle, h + F);
+      const out = [];
+      let s = Math.max(r.lastHaid.start + cyc, r.lastHaid.end + F);
+      for (let i = 0; i < n; i++) { out.push({ start: s, end: s + h, haid: h, rough: true }); s += cyc; }
+      return out;
+    }
+    const out = [];
+    let s = r.nextHaid;
+    if (!(r.mode && r.mode.waiting)) { const p = predict(hS); if (p) hS.push(p.value); }
+    for (let i = 0; i < n; i++) {
+      const h = predict(hH).value;
+      out.push({ start: s, end: s + h, haid: h });
+      hH.push(h);
+      const ps = predict(hS);
+      if (!ps) break;
+      hS.push(ps.value);
+      s = s + h + ps.value;
+    }
+    return out;
+  }
+
+  const api = { analyze, predict, forecast, fmtDur, REF, MIN, H, D, F, N60 };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.HaidEngine = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+(function () {
+'use strict';
+const E = window.HaidEngine;
+const { MIN, H, D, F } = E;
+const KEY = 'catatan-haid-v1';
+const VIEWS = ['hariini', 'catatan', 'kalender', 'hukum', 'lainnya'];
+
+const CITIES = [
+  ['Jakarta', -6.2088, 106.8456], ['Bandung', -6.9175, 107.6191], ['Semarang', -6.9667, 110.4167], ['Yogyakarta', -7.7956, 110.3695],
+  ['Surabaya', -7.2575, 112.7521], ['Bangkalan', -7.0455, 112.7351], ['Malang', -7.9666, 112.6326], ['Denpasar', -8.6705, 115.2126],
+  ['Medan', 3.5952, 98.6722], ['Banda Aceh', 5.5483, 95.3238], ['Padang', -0.9471, 100.4172], ['Palembang', -2.9761, 104.7754],
+  ['Pontianak', -0.0263, 109.3425], ['Banjarmasin', -3.3186, 114.5944], ['Samarinda', -0.5022, 117.1536], ['Makassar', -5.1477, 119.4327],
+  ['Manado', 1.4748, 124.8421], ['Ambon', -3.6954, 128.1814], ['Jayapura', -2.5337, 140.7181], ['Kuala Lumpur', 3.139, 101.6869], ['Singapura', 1.3521, 103.8198],
+];
+const DEFAULT_SETTINGS = { city: 'Jakarta', lat: -6.2088, lng: 106.8456, minShalat: 5, lupaAdat: false, siklus: 30 };
+
+// ---------------- State & penyimpanan ----------------
+let data = { bloods: [], births: [], settings: { ...DEFAULT_SETTINGS } };
+let demo = false;
+let view = 'hariini';
+let calMonth = null, calSel = null, lawFilter = 'semua';
+let ref = null, storeMode = 'wait', writing = false, dirty = false, firstSnap = true;
+
+function lsGet() { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } }
+function lsSet(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) { /* abaikan */ } }
+function normalize(v) {
+  const o = v && typeof v === 'object' ? v : {};
+  return {
+    bloods: Array.isArray(o.bloods) ? o.bloods.filter(b => b && isFinite(+b.start)).map(b => ({ id: String(b.id || uid()), start: +b.start, end: b.end == null ? null : +b.end })) : [],
+    births: Array.isArray(o.births) ? o.births.filter(b => b && isFinite(+b.time)).map(b => ({ id: String(b.id || uid()), time: +b.time, kind: b.kind === 'keguguran' ? 'keguguran' : 'lahir' })) : [],
+    settings: { ...DEFAULT_SETTINGS, ...(o.settings || {}) },
+  };
+}
+function uid() { return Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4); }
+function isEmpty(d) { return !d.bloods.length && !d.births.length; }
+
+function setSync(mode, text) {
+  storeMode = mode;
+  const el = document.getElementById('sync');
+  el.dataset.s = mode; el.querySelector('span').textContent = text;
+}
+
+async function initStore() {
+  let connected = false;
+  try {
+    if (window.claude && typeof window.claude.use === 'function') {
+      const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+      let id = user && typeof user.id === 'function' ? await user.id() : null;
+      // Pengunjung yang hanya boleh melihat (mis. dari link publik) tidak bisa menyimpan ke akun: pakai penyimpanan perangkat
+      try { if (id && user.can && (await user.can('data.write')) === false) id = null; } catch (e) { /* abaikan */ }
+      if (db && id) {
+        ref = db.doc('data/users/' + id + '/tracker');
+        connected = true;
+        const timer = setTimeout(() => { if (firstSnap) setSync('local', 'Akun belum terjangkau, memakai salinan di perangkat'); }, 10000);
+        ref.onSnapshot(snap => {
+          if (snap.metadata.hasPendingWrites) return;
+          if (!snap.metadata.fromCache) clearTimeout(timer);
+          if (firstSnap) {
+            firstSnap = false;
+            if (!snap.exists && !isEmpty(data) && !demo) { queueWrite(); }
+            else if (snap.exists) { data = normalize(snap.data()); demo = false; lsSet(data); }
+          } else if (snap.exists && !writing && !dirty) { data = normalize(snap.data()); demo = false; lsSet(data); }
+          setSync('db', 'Tersimpan di akun Anda (pribadi)');
+          afterLoad();
+        }, err => { clearTimeout(timer); ref = null; setSync('local', 'Tersimpan di perangkat ini saja'); afterLoad(); });
+      }
+    }
+  } catch (e) { connected = false; }
+  if (!connected) { setSync('local', 'Tersimpan di perangkat ini saja'); afterLoad(); }
+}
+function afterLoad() {
+  document.getElementById('demoBanner').hidden = !demo;
+  render();
+}
+async function queueWrite() {
+  if (demo) return;
+  lsSet(data);
+  if (!ref) return;
+  if (writing) { dirty = true; return; }
+  writing = true;
+  try {
+    do { dirty = false; await ref.set({ v: 1, bloods: data.bloods, births: data.births, settings: data.settings, updatedAt: Date.now() }); } while (dirty);
+    setSync('db', 'Tersimpan di akun Anda (pribadi)');
+  } catch (e) {
+    if (e && e.code === 'unavailable') { setTimeout(() => { writing = false; queueWrite(); }, 800 + Math.random() * 800); return; }
+    ref = null; setSync('local', 'Tersimpan di perangkat ini saja');
+  }
+  writing = false;
+}
+function commit(mutator, msg) {
+  if (demo) { data = { bloods: [], births: [], settings: data.settings }; demo = false; document.getElementById('demoBanner').hidden = true; }
+  mutator(data);
+  queueWrite();
+  render();
+  if (msg) toast(msg);
+}
+
+function loadDemo() {
+  demo = true;
+  const now = Date.now();
+  const base = new Date(now); base.setHours(0, 0, 0, 0);
+  const t = (dayOffset, hh, mm) => base.getTime() + dayOffset * D + hh * H + mm * MIN;
+  data.bloods = [
+    { id: 'c1', start: t(-96, 7, 15), end: t(-89, 16, 40) },
+    { id: 'c2', start: t(-65, 21, 5), end: t(-59, 9, 30) },
+    { id: 'c3', start: t(-35, 4, 50), end: t(-31, 12, 0) },
+    { id: 'c4', start: t(-29, 18, 20), end: t(-28, 8, 10) },
+    { id: 'c5', start: t(-4, 10, 30), end: null },
+  ];
+  data.births = [];
+}
+
+// ---------------- Waktu & format ----------------
+const BULAN = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+const BULAN_P = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+const HARI = ['Ahad', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+const pad = n => String(n).padStart(2, '0');
+function fmtTime(ms) { const d = new Date(ms); return pad(d.getHours()) + '.' + pad(d.getMinutes()); }
+function fmtDate(ms, withYear = true) { const d = new Date(ms); return HARI[d.getDay()] + ', ' + d.getDate() + ' ' + BULAN[d.getMonth()] + (withYear ? ' ' + d.getFullYear() : ''); }
+function fmtDT(ms) { return fmtDate(ms) + ' · ' + fmtTime(ms); }
+function fmtRange(a, b) {
+  const sameDay = new Date(a).toDateString() === new Date(b).toDateString();
+  return fmtDT(a) + ' → ' + (sameDay ? fmtTime(b) : fmtDT(b));
+}
+const fmtDur = E.fmtDur;
+function toInput(ms) { const d = new Date(ms); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+function fromInput(s) { if (!s) return null; const v = new Date(s).getTime(); return isFinite(v) ? v : null; }
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function startOfDay(ms) { const d = new Date(ms); d.setHours(0, 0, 0, 0); return d.getTime(); }
+function addDays(ms, n) { const d = new Date(ms); d.setDate(d.getDate() + n); return d.getTime(); }
+
+// ---------------- Jadwal shalat (perhitungan astronomis, sudut Kemenag) ----------------
+const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+const dsin = d => Math.sin(rad(d)), dcos = d => Math.cos(rad(d)), dtan = d => Math.tan(rad(d));
+const darcsin = x => deg(Math.asin(x)), darccos = x => deg(Math.acos(Math.max(-1, Math.min(1, x)))), darctan2 = (y, x) => deg(Math.atan2(y, x)), darccot = x => deg(Math.atan(1 / x));
+const fixA = a => { a = a - 360 * Math.floor(a / 360); return a < 0 ? a + 360 : a; };
+const fixH = a => { a = a - 24 * Math.floor(a / 24); return a < 0 ? a + 24 : a; };
+function julian(y, m, d) { if (m <= 2) { y -= 1; m += 12; } const A = Math.floor(y / 100), B = 2 - A + Math.floor(A / 4); return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5; }
+function sunPos(jd) {
+  const Dd = jd - 2451545.0, g = fixA(357.529 + 0.98560028 * Dd), q = fixA(280.459 + 0.98564736 * Dd);
+  const L = fixA(q + 1.915 * dsin(g) + 0.020 * dsin(2 * g)), e = 23.439 - 0.00000036 * Dd;
+  const RA = darctan2(dcos(e) * dsin(L), dcos(L)) / 15;
+  return { decl: darcsin(dsin(e) * dsin(L)), eqt: q / 15 - fixH(RA) };
+}
+const ptCache = new Map();
+function prayerDay(dayMs) {
+  const s = data.settings; const k = dayMs + '|' + s.lat + '|' + s.lng;
+  if (ptCache.has(k)) return ptCache.get(k);
+  const d = new Date(dayMs), lat = +s.lat, lng = +s.lng;
+  const jDate = julian(d.getFullYear(), d.getMonth() + 1, d.getDate()) - lng / (15 * 24);
+  const tz = -new Date(dayMs + 12 * H).getTimezoneOffset() / 60;
+  const midDay = t => fixH(12 - sunPos(jDate + t).eqt);
+  const angleTime = (angle, t, ccw) => { const decl = sunPos(jDate + t).decl, noon = midDay(t); const T = darccos((-dsin(angle) - dsin(decl) * dsin(lat)) / (dcos(decl) * dcos(lat))) / 15; return noon + (ccw ? -T : T); };
+  const asr = t => { const decl = sunPos(jDate + t).decl; return angleTime(-darccot(1 + dtan(Math.abs(lat - decl))), t); };
+  const adj = h => h + tz - lng / 15;
+  const toMs = h => dayMs + Math.round(h * 60) * MIN;
+  const r = {
+    subuh: toMs(adj(angleTime(20, 5 / 24, true)) + 2 / 60),
+    terbit: toMs(adj(angleTime(0.833, 6 / 24, true)) - 2 / 60),
+    dzuhur: toMs(adj(midDay(12 / 24)) + 3 / 60),
+    ashar: toMs(adj(asr(13 / 24)) + 2 / 60),
+    maghrib: toMs(adj(angleTime(0.833, 18 / 24)) + 2 / 60),
+    isya: toMs(adj(angleTime(18, 18 / 24)) + 2 / 60),
+  };
+  ptCache.set(k, r); return r;
+}
+const PNAMA = { subuh: 'Subuh', dzuhur: 'Dzuhur', ashar: 'Ashar', maghrib: 'Maghrib', isya: 'Isya' };
+function prayerWindows(dayMs) {
+  const p = prayerDay(dayMs), n = prayerDay(addDays(dayMs, 1));
+  return [
+    { k: 'subuh', s: p.subuh, e: p.terbit }, { k: 'dzuhur', s: p.dzuhur, e: p.ashar }, { k: 'ashar', s: p.ashar, e: p.maghrib },
+    { k: 'maghrib', s: p.maghrib, e: p.isya }, { k: 'isya', s: p.isya, e: n.subuh },
+  ];
+}
+function windowAt(t) {
+  const d0 = startOfDay(t);
+  for (const day of [addDays(d0, -1), d0]) for (const w of prayerWindows(day)) if (t >= w.s && t < w.e) return w;
+  return null;
+}
+function prayersEndingIn(a, b) {
+  const out = []; let day = addDays(startOfDay(a), -1);
+  while (day <= b) { for (const w of prayerWindows(day)) if (w.e > a && w.e <= b) out.push(w); day = addDays(day, 1); }
+  return out;
+}
+function obligationAtStart(t) {
+  const w = windowAt(t); if (!w) return null;
+  const minDur = Math.max(1, +data.settings.minShalat || 5) * MIN;
+  if (t - w.s >= minDur) return { w, text: 'Darah datang ' + fmtDur(t - w.s) + ' setelah masuk waktu ' + PNAMA[w.k] + '. Jika belum shalat ' + PNAMA[w.k] + ', wajib mengqadhanya setelah suci.' };
+  return { w, text: 'Darah datang sebelum cukup waktu untuk shalat ' + PNAMA[w.k] + ' yang paling ringan, maka tidak wajib qadha ' + PNAMA[w.k] + '.', none: true };
+}
+function obligationAtEnd(t) {
+  const w = windowAt(t);
+  if (!w) return { text: 'Suci di luar waktu shalat fardhu (antara terbit matahari dan Dzuhur). Shalat pertama yang wajib adalah Dzuhur.' };
+  const list = [PNAMA[w.k]];
+  if (w.k === 'ashar') list.unshift('Dzuhur');
+  if (w.k === 'isya') list.unshift('Maghrib');
+  return { w, text: 'Suci di waktu ' + PNAMA[w.k] + ' (masih ada waktu untuk takbiratul ihram): wajib shalat ' + list.join(' dan ') + (list.length > 1 ? ' (karena bisa dijamak).' : '.') };
+}
+function countPrayers(list) {
+  const c = {}; for (const w of list) c[w.k] = (c[w.k] || 0) + 1;
+  return Object.keys(PNAMA).filter(k => c[k]).map(k => c[k] + '× ' + PNAMA[k]).join(', ');
+}
+
+// ---------------- Pemilih tanggal & jam yang mudah ----------------
+function dateStr(ms) { const d = new Date(ms); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function timeStr(ms) { const d = new Date(ms); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+function dtpHtml(p, ms, label) {
+  const today = dateStr(Date.now());
+  return '<div class="field dtp" data-p="' + p + '"><span>' + esc(label) + '</span>' +
+    '<div class="chips">' + [['0', 'Hari ini'], ['1', 'Kemarin'], ['2', '2 hari lalu']].map(([o, l]) => '<button type="button" class="chip" data-dayoff="' + o + '" aria-pressed="false">' + l + '</button>').join('') + '</div>' +
+    '<div class="dtp-row"><input type="date" id="' + p + '-d" aria-label="Tanggal" max="' + today + '" value="' + dateStr(ms) + '"><input type="time" id="' + p + '-t" aria-label="Jam" value="' + timeStr(ms) + '"></div>' +
+    '<div class="chips"><button type="button" class="chip" data-tm="now" aria-pressed="false">Sekarang</button>' + Object.keys(PNAMA).map(k => '<button type="button" class="chip" data-tm="' + k + '" aria-pressed="false">Awal ' + PNAMA[k] + '</button>').join('') + '</div>' +
+    '<p class="small muted dtp-note" id="' + p + '-n"></p></div>';
+}
+function getDtp(p) {
+  const d = document.getElementById(p + '-d'), t = document.getElementById(p + '-t');
+  if (!d || !d.value || !t || !t.value) return null;
+  const v = new Date(d.value + 'T' + t.value).getTime();
+  return isFinite(v) ? v : null;
+}
+function setDtp(p, ms) {
+  document.getElementById(p + '-d').value = dateStr(ms);
+  document.getElementById(p + '-t').value = timeStr(ms);
+  noteDtp(p);
+}
+function noteDtp(p) {
+  const v = getDtp(p), n = document.getElementById(p + '-n');
+  if (!n) return;
+  if (v == null) { n.textContent = ''; return; }
+  const w = windowAt(v);
+  n.textContent = fmtDT(v) + (w ? ' · di waktu ' + PNAMA[w.k] + ' (' + fmtTime(w.s) + '–' + fmtTime(w.e) + ')' : ' · di luar waktu shalat fardhu');
+}
+function bindDtp(root, p, onChange) {
+  const box = root.querySelector('.dtp[data-p="' + p + '"]');
+  const press = (sel, btn) => { box.querySelectorAll(sel).forEach(b => b.setAttribute('aria-pressed', String(b === btn))); };
+  box.querySelectorAll('[data-dayoff]').forEach(b => b.onclick = () => {
+    const d = addDays(startOfDay(Date.now()), -(+b.dataset.dayoff));
+    document.getElementById(p + '-d').value = dateStr(d);
+    press('[data-dayoff]', b); noteDtp(p); onChange && onChange();
+  });
+  box.querySelectorAll('[data-tm]').forEach(b => b.onclick = () => {
+    if (b.dataset.tm === 'now') { setDtp(p, Date.now()); press('[data-dayoff]', box.querySelector('[data-dayoff="0"]')); }
+    else {
+      const dv = document.getElementById(p + '-d').value; if (!dv) return;
+      const day = new Date(dv + 'T00:00').getTime();
+      document.getElementById(p + '-t').value = timeStr(prayerDay(day)[b.dataset.tm]);
+    }
+    press('[data-tm]', b); noteDtp(p); onChange && onChange();
+  });
+  ['-d', '-t'].forEach(s => document.getElementById(p + s).addEventListener('change', () => { press('[data-tm]', null); press('[data-dayoff]', null); noteDtp(p); onChange && onChange(); }));
+  noteDtp(p);
+}
+
+// ---------------- Analisis ----------------
+let R = null;
+function analyze() {
+  R = E.analyze(data, Date.now());
+  R.forecast = E.forecast(R, 6, Math.max(16, Math.min(90, +data.settings.siklus || 30)) * D);
+  const lastB = R.bloods[R.bloods.length - 1];
+  R.late = !!(R.forecast[0] && R.forecast[0].start < R.now && !(lastB && (lastB.open || lastB.e > R.forecast[0].start)));
+  // Tambahkan kewajiban shalat di awal dan akhir haid/nifas
+  const extra = [];
+  for (const p of R.periods) {
+    if (p.early || p.type === 'mutahayyirah') continue;
+    const s = obligationAtStart(p.start);
+    if (s && !s.none) extra.push({ time: p.start, kind: 'shalat', text: s.text, ref: { src: 'Jilid 1 Bab Tentang Shalatnya B (datangnya penghalang)', bait: '75-76' } });
+    // darah sudah berhenti (bukan sedang mengalir): kewajiban shalat saat suci
+    if (p.end < R.now - MIN) {
+      const o = obligationAtEnd(p.end);
+      extra.push({ time: p.end, kind: 'shalat', text: o.text + (p.provisional ? ' Jika darah keluar lagi dalam 15 hari sejak awal haid, kembali berlaku haid.' : ''), ref: { src: 'Jilid 1 Bab Tentang Shalatnya C (berakhirnya penghalang)', bait: '77-78' } });
+    }
+  }
+  const evs = [];
+  for (const ev of R.events) {
+    if (ev.kind === 'qadha-rentang' || ev.kind === 'qadha-fasad') {
+      const r = JSON.parse(ev.text);
+      const to = Math.min(r.to, R.now);
+      // hanya saat darah keluar: di masa bersih ia sudah wajib shalat dan (seharusnya) sudah mengerjakannya
+      const pieces = R.bloods.map(b => ({ s: Math.max(b.s, r.from), e: Math.min(b.e, to) })).filter(p => p.e > p.s);
+      const list = prayersEndingIn(r.from, to).filter(w => pieces.some(p => w.e - MIN >= p.s && w.e - MIN < p.e));
+      const head = ev.kind === 'qadha-fasad' ? 'Darah ini bukan haid. ' : 'Shalat yang ditinggalkan di luar masa haid (siklus pertama istihadhah). ';
+      const ranges = pieces.map(p => fmtRange(p.s, p.e)).join('; ');
+      evs.push({ time: r.to, kind: 'qadha', text: head + 'Qadha shalat yang ditinggalkan selama darah keluar: ' + ranges + (list.length ? ' — ' + countPrayers(list) + (r.to > R.now ? ' (sejauh ini)' : '') : '') + '. Shalat di hari-hari bersih tidak perlu diulang.', ref: ev.ref });
+    } else evs.push(ev);
+  }
+  R.allEvents = evs.concat(extra).sort((a, b) => a.time - b.time);
+}
+
+function currentStatus() {
+  const now = R.now;
+  const tl = R.timeline;
+  const open = R.bloods.find(b => b.open);
+  let item = tl.find(x => x.type !== 'naqa' && x.start <= now && (x.end > now || (x.end >= now - MIN && open && open.e >= now - MIN && x.provisional)));
+  const naqa = tl.find(x => x.type === 'naqa' && x.start <= now && x.end > now);
+  if (naqa) item = naqa;
+  if (item) return { t: item.type, item };
+  // bersih setelah haid yang masih mungkin berlanjut
+  const last = R.periods[R.periods.length - 1];
+  if (last && last.type === 'haid' && last.provisional && now < last.start + F && now > last.end) return { t: 'naqa', item: { type: 'naqa', start: last.end, end: now, reason: 'Darah sudah bersih. Menurut pendapat mu\'tamad wajib mandi dan shalat. Jika darah keluar lagi sebelum ' + fmtDT(last.start + F) + ' (15 hari sejak awal haid), kembali berlaku haid.', ref: E.REF.bersih24, pending: true } };
+  const lastBloodEnd = R.bloods.length ? R.bloods[R.bloods.length - 1].e : null;
+  return { t: 'suci', item: { type: 'suci', start: R.lastHaid ? Math.max(R.lastHaid.end, lastBloodEnd || 0) : null } };
+}
+
+const LABEL = { haid: 'Haid', nifas: 'Nifas', istihadhah: 'Istihadhah', naqa: 'Bersih', suci: 'Suci', mutahayyirah: 'Mutahayyirah' };
+const RULES = {
+  haid: [
+    'Tidak shalat, dan tidak wajib mengqadhanya.',
+    'Tidak puasa. Puasa Ramadhan yang ditinggalkan wajib diqadha.',
+    'Tidak boleh menyentuh atau membawa mushaf, thawaf, dan berdiam di masjid.',
+    'Tidak membaca Al-Qur\'an dengan niat membaca. Dengan niat dzikir boleh.',
+    'Suami haram berjima\' dan menjatuhkan talak.',
+    'Larangan tetap berlaku setelah darah bersih sampai mandi, kecuali puasa, talak dan lewat di masjid.',
+  ],
+  istihadhah: [
+    'Wajib shalat dan puasa seperti biasa (daimul hadats).',
+    'Sebelum wudhu: basuh kemaluan, sumbat dengan kapas, lalu balut dan pakai celana dalam yang kuat. Jangan disumbat saat puasa.',
+    'Wudhu setelah masuk waktu shalat, satu wudhu untuk satu shalat fardhu, lalu segera shalat.',
+    'Boleh dikumpuli suami meski darah mengalir.',
+  ],
+  naqa: [
+    'Wajib mandi lalu shalat (pendapat mu\'tamad).',
+    'Puasa di masa bersih ini sah menurut qaul laqthi. Menurut qaul sahbi, jika darah kembali dalam 15 hari, puasanya wajib diulang.',
+    'Periksa dengan kapas di kemaluan bagian dalam. Ada bercak, sekalipun keruh, berarti belum bersih.',
+  ],
+  suci: ['Kewajiban ibadah berlaku seperti biasa.', 'Catat setiap kali darah keluar dan berhenti, lengkap dengan jamnya, agar tidak menjadi mutahayyirah.'],
+};
+RULES.nifas = RULES.haid;
+RULES.mutahayyirah = [
+  'Berlaku hukum haid dalam segala hal, kecuali 4 perkara: boleh ditalak, boleh membaca Al-Qur\'an dengan niat belajar, wajib ibadah yang butuh niat (shalat, puasa, i\'tikaf), dan boleh masuk masjid untuk ibadah.',
+  'Wajib shalat fardhu setiap waktu, tanpa hari libur.',
+  'Setiap bulan wajib qadha shalat 2 hari (dikerjakan tiga kali sesuai cara di Jilid 2 Bab J).',
+  'Suami haram menggauli, tetapi tetap wajib menafkahi.',
+  'Tidak sah menjadi imam shalat dan tidak boleh menjamak taqdim.',
+  'Kasus ini rumit: tanyakan rinciannya kepada ustadzah. Bila Anda bisa membedakan warna darah (kuat dan lemah), hukumnya bisa berbeda.',
+];
+
+// ---------------- Render ----------------
+function render() {
+  analyze();
+  renderHariIni(); renderCatatan(); renderKalender(); renderHukum(); renderLainnya();
+}
+
+function refHtml(ref) {
+  if (!ref) return '';
+  return '<div class="ref">Rujukan: ' + esc(ref.src) + (ref.bait && ref.bait !== '-' ? ' · Bait-Bait Haid ' + esc(ref.bait) : '') + '</div>';
+}
+
+function renderHariIni() {
+  const el = document.getElementById('v-hariini');
+  const st = currentStatus();
+  const now = R.now;
+  const open = R.bloods.find(b => b.open);
+  const it = st.item;
+  let since = '';
+  if (it.start) {
+    if (st.t === 'suci') since = 'Sejak ' + fmtDT(it.start);
+    else since = 'Sejak ' + fmtDT(it.start) + ' · berjalan ' + fmtDur(now - it.start);
+  } else since = 'Belum ada haid yang tercatat.';
+  const provisional = it.provisional || it.pending;
+  let h = '<div class="status" data-t="' + st.t + '">' +
+    '<h3>Keadaan sekarang · ' + esc(fmtDT(now)) + '</h3>' +
+    '<div class="label">' + LABEL[st.t] + (it.early ? ' (belum pasti)' : '') + '</div>' +
+    '<div class="since">' + esc(since) + '</div>' +
+    (provisional ? '<div><span class="pill prov">Sementara, bisa berubah sesuai darah berikutnya</span></div>' : '') +
+    (it.reason ? '<p class="small" style="margin:0">' + esc(it.reason) + '</p>' + refHtml(it.ref) : '') +
+    '</div>';
+
+  // aksi cepat
+  h += '<div class="card"><h3>' + (open ? 'Darah sedang keluar sejak ' + esc(fmtDT(open.s)) : 'Catat darah') + '</h3>' +
+    (open
+      ? '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn clean" id="qStopNow" type="button">Darah berhenti sekarang</button><button class="btn" id="qStopOther" type="button">Berhenti di waktu lain…</button></div>' +
+        '<p class="small muted" style="margin:0">Pakai waktu terakhir masih terlihat bercak saat dicek dengan kapas, bukan saat Anda mendapati sudah bersih.</p>'
+      : '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn blood" id="qStartNow" type="button">Darah keluar sekarang</button><button class="btn" id="qStartOther" type="button">Keluar di waktu lain…</button></div>' +
+        '<p class="small muted" style="margin:0">Cairan keruh atau kuning dari rahim juga dicatat sebagai darah. Untuk haid yang sudah selesai, pakai <b>Catat haid yang sudah lewat</b>.</p>') +
+    '</div>';
+  if (R.late) h += '<div class="banner" style="margin:0"><p>Menurut adat, haid seharusnya mulai ' + esc(fmtDT(R.forecast[0].start)) + ', tetapi belum ada darah yang dicatat.</p></div>';
+
+  // yang berlaku
+  h += '<div class="card"><h3>Yang berlaku sekarang</h3><ul class="rules">' + RULES[st.t].map(r => '<li>' + esc(r) + '</li>').join('') + '</ul></div>';
+
+  // tindakan dekat
+  const near = R.allEvents.filter(e => e.time >= now - 3 * D && e.time <= now + 16 * D);
+  if (near.length) {
+    h += '<div class="card"><h3>Mandi dan shalat</h3><div class="todo">' + near.map(e =>
+      '<div class="row"><span class="pill" data-t="' + (e.kind === 'mandi' ? 'mandi' : 'shalat') + '">' + (e.kind === 'mandi' ? 'Mandi' : e.kind === 'qadha' ? 'Qadha' : e.kind === 'shalat' ? 'Shalat' : 'Info') + '</span>' +
+      '<div><div class="when">' + (e.time > now ? 'Nanti · ' : '') + esc(fmtDT(e.time)) + '</div><div class="small">' + esc(e.text) + '</div></div></div>').join('') + '</div></div>';
+  }
+
+  // adat
+  const a = R.adat;
+  const cyc = a.haid && a.suci ? a.haid.value + a.suci.value : null;
+  h += '<div class="card"><h3>Adat (kebiasaan) terakhir</h3><div class="kv">' +
+    '<div><span class="small muted">Adat haid</span><b>' + (a.haid ? esc(fmtDur(a.haid.value)) : '—') + '</b>' + (a.haid && a.haid.pattern ? '<span class="small muted">urutan ' + a.haid.pattern.map(v => Math.round(v / D * 10) / 10).join('-') + ' hari</span>' : '') + '</div>' +
+    '<div><span class="small muted">Adat suci</span><b>' + (a.suci ? esc(fmtDur(a.suci.value)) : '—') + '</b>' + (a.suci && a.suci.pattern ? '<span class="small muted">urutan ' + a.suci.pattern.map(v => Math.round(v / D * 10) / 10).join('-') + ' hari</span>' : '') + '</div>' +
+    '<div><span class="small muted">Siklus</span><b>' + (cyc ? esc(fmtDur(cyc)) : '—') + '</b></div>' +
+    (function () { const nx = R.forecast.find(p => p.start > now); return '<div><span class="small muted">Perkiraan haid berikutnya</span><b>' + (nx ? esc(fmtDate(nx.start)) : '—') + '</b>' + (nx ? '<span class="small muted">' + esc(fmtTime(nx.start)) + ' · ' + Math.ceil((nx.start - now) / D) + ' hari lagi</span>' : '') + '</div>'; })() +
+    '</div><p class="small muted" style="margin:0">Adat inilah yang dipakai bila suatu saat darah keluar lebih dari 15 hari 15 malam (istihadhah).</p></div>';
+
+  h += '<div class="card"><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn primary" id="qAdd" type="button">Catat haid yang sudah lewat</button><button class="btn" id="qBirth" type="button">Catat melahirkan / keguguran</button></div></div>';
+  el.innerHTML = h;
+
+  const on = (id, fn) => { const b = document.getElementById(id); if (b) b.onclick = fn; };
+  on('qStartNow', () => {
+    if (data.bloods.some(b => b.start > Date.now())) return;
+    commit(d => d.bloods.push({ id: uid(), start: Date.now(), end: null }), 'Darah keluar dicatat: ' + fmtDT(Date.now()));
+  });
+  on('qStartOther', () => openBlood(null, { start: Date.now(), open: true }));
+  on('qStopNow', () => {
+    const raw = data.bloods.find(b => b.end == null); if (!raw) return;
+    commit(() => { raw.end = Date.now(); }, 'Darah berhenti dicatat: ' + fmtDT(Date.now()));
+  });
+  on('qStopOther', () => openStop(Date.now()));
+  on('qBirth', () => openBirth());
+  on('qAdd', () => openBlood(null, { past: true }));
+}
+
+// Form singkat: darah yang sedang keluar berhenti pada waktu tertentu
+function openStop(ms) {
+  const raw = data.bloods.find(b => b.end == null);
+  if (!raw) return toast('Tidak ada darah yang sedang keluar.');
+  openSheet('<h2>Darah berhenti</h2><p class="small muted" style="margin:0">Darah keluar sejak ' + esc(fmtDT(raw.start)) + '.</p>' +
+    dtpHtml('st', Math.max(ms, raw.start + MIN), 'Terakhir terlihat bercak') +
+    '<p class="err" id="stErr" hidden></p><div class="acts"><button class="btn" id="stCancel" type="button">Batal</button><button class="btn clean" id="stSave" type="button">Simpan</button></div>', sh => {
+    bindDtp(sh, 'st');
+    sh.querySelector('#stCancel').onclick = closeSheet;
+    sh.querySelector('#stSave').onclick = () => {
+      const t = getDtp('st'), err = sh.querySelector('#stErr');
+      const fail = m => { err.hidden = false; err.textContent = m; };
+      if (t == null) return fail('Pilih tanggal dan jam.');
+      if (t <= raw.start) return fail('Waktu berhenti harus setelah ' + fmtDT(raw.start) + '.');
+      if (t > Date.now() + MIN) return fail('Waktu tidak boleh di masa depan.');
+      closeSheet(); commit(() => { raw.end = t; }, 'Darah berhenti dicatat: ' + fmtDT(t));
+    };
+  });
+}
+
+function renderCatatan() {
+  const el = document.getElementById('v-catatan');
+  const list = [...data.bloods].sort((a, b) => b.start - a.start);
+  let h = '<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Catatan darah</h2>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary sm" id="cAdd" type="button">+ Darah</button><button class="btn sm" id="cBirth" type="button">+ Melahirkan</button></div></div>' +
+    '<p class="small muted" style="margin:0">Satu catatan = satu kali darah keluar sampai berhenti. Bila darah putus lalu keluar lagi, buat catatan baru. Hukumnya dihitung otomatis.</p></div>';
+  if (!list.length) h += '<div class="empty">Belum ada catatan. Tekan <b>+ Darah</b> untuk mencatat darah pertama.</div>';
+  else h += '<div class="entries">' + list.map(b => {
+    const end = b.end == null ? null : b.end;
+    return '<div class="entry"><div style="min-width:0"><div class="t">' + esc(fmtDT(b.start)) + '</div><div class="d">' +
+      (end == null ? '<span class="pill" data-t="haid">Masih keluar</span> · ' + esc(fmtDur(Date.now() - b.start)) : 'sampai ' + esc(fmtDT(end)) + ' · <span class="num">' + esc(fmtDur(end - b.start)) + '</span>') +
+      '</div></div><div class="acts"><button class="btn sm" data-edit="' + esc(b.id) + '" type="button">Ubah</button></div></div>';
+  }).join('') + '</div>';
+  const births = [...data.births].sort((a, b) => b.time - a.time);
+  if (births.length) {
+    h += '<div class="card"><h3>Melahirkan / keguguran</h3><div class="entries">' + births.map(b =>
+      '<div class="entry"><div><div class="t">' + (b.kind === 'keguguran' ? 'Keguguran' : 'Melahirkan') + '</div><div class="d">' + esc(fmtDT(b.time)) + ' · batas nifas ' + esc(fmtDate(b.time + 60 * D)) + '</div></div>' +
+      '<div class="acts"><button class="btn sm" data-bedit="' + esc(b.id) + '" type="button">Ubah</button></div></div>').join('') + '</div></div>';
+  }
+  el.innerHTML = h;
+  document.getElementById('cAdd').onclick = () => openBlood();
+  document.getElementById('cBirth').onclick = () => openBirth();
+  el.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => openBlood(data.bloods.find(x => x.id === b.dataset.edit)));
+  el.querySelectorAll('[data-bedit]').forEach(b => b.onclick = () => openBirth(data.births.find(x => x.id === b.dataset.bedit)));
+}
+
+function piecesIn(a, b) {
+  const out = [];
+  for (const x of R.timeline) {
+    const s = Math.max(a, x.start), e = Math.min(b, x.end);
+    if (e > s) out.push({ type: x.type, s, e, x });
+  }
+  return out;
+}
+
+function renderKalender() {
+  const el = document.getElementById('v-kalender');
+  const now = R.now;
+  if (calMonth == null) { const d = new Date(now); calMonth = new Date(d.getFullYear(), d.getMonth(), 1).getTime(); }
+  const m = new Date(calMonth);
+  const first = new Date(m.getFullYear(), m.getMonth(), 1);
+  const offset = (first.getDay() + 6) % 7; // Senin di kiri
+  let day = addDays(first.getTime(), -offset);
+  const preds = R.forecast.filter(p => p.end > now);
+  const predAt = (a, b) => preds.filter(p => p.end > a && p.start < b);
+  const evDays = new Set(R.allEvents.filter(e => e.kind === 'mandi').map(e => startOfDay(e.time)));
+  let cells = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Ahd'].map(d => '<div class="dow">' + d + '</div>').join('');
+  for (let i = 0; i < 42; i++) {
+    const d0 = day, d1 = addDays(day, 1);
+    const inMonth = new Date(d0).getMonth() === m.getMonth();
+    const pcs = piecesIn(d0, d1);
+    const span = d1 - d0;
+    const pp = d1 > now ? predAt(Math.max(d0, now), d1) : [];
+    const bar = pcs.map(p => '<span class="t-' + p.type + '" style="left:' + ((p.s - d0) / span * 100).toFixed(2) + '%;width:' + Math.max(2, (p.e - p.s) / span * 100).toFixed(2) + '%"></span>').join('') +
+      pp.map(p => { const s = Math.max(p.start, d0, now), e = Math.min(p.end, d1); return e > s ? '<span class="t-pred" style="left:' + ((s - d0) / span * 100).toFixed(2) + '%;width:' + Math.max(2, (e - s) / span * 100).toFixed(2) + '%"></span>' : ''; }).join('');
+    const isPred = pp.length > 0;
+    const cls = ['day', inMonth ? '' : 'out', startOfDay(now) === d0 ? 'today' : '', calSel === d0 ? 'sel' : '', isPred ? 'pred' : ''].join(' ');
+    cells += '<button class="' + cls + '" data-day="' + d0 + '" type="button" aria-label="' + esc(fmtDate(d0)) + '"><span class="n">' + new Date(d0).getDate() + '</span><div class="bar">' + bar + '</div><div class="marks">' + (evDays.has(d0) ? '<i title="mandi"></i>' : '') + '</div></button>';
+    day = d1;
+    if (i >= 34 && new Date(day).getMonth() !== m.getMonth() && new Date(day).getDay() === 1) break;
+  }
+  let h = '<div class="card"><div class="cal-head"><button class="btn sm" id="calPrev" type="button" aria-label="Bulan sebelumnya">‹</button><h2>' + BULAN_P[m.getMonth()] + ' ' + m.getFullYear() + '</h2><button class="btn sm" id="calNext" type="button" aria-label="Bulan berikutnya">›</button></div>' +
+    '<div class="cal">' + cells + '</div>' +
+    '<div class="legend"><span><i class="t-haid"></i>Haid</span><span><i class="t-nifas"></i>Nifas</span><span><i class="t-istihadhah"></i>Istihadhah</span><span><i class="t-naqa"></i>Bersih di sela haid</span>' + (data.settings.lupaAdat ? '<span><i class="t-mutahayyirah"></i>Mutahayyirah</span>' : '') + '<span><i style="background:var(--accent);width:8px;height:8px;border-radius:50%"></i>Waktu mandi</span><span><i style="border:1px dashed var(--haid)"></i>Perkiraan haid</span></div></div>';
+  if (calSel != null) {
+    const d0 = calSel, d1 = addDays(d0, 1);
+    const pcs = piecesIn(d0, d1);
+    const evs = R.allEvents.filter(e => e.time >= d0 && e.time < d1);
+    const pt = prayerDay(d0);
+    h += '<div class="card"><h2>' + esc(fmtDate(d0)) + '</h2>' +
+      '<div class="daybar24">' + pcs.map(p => '<span class="t-' + p.type + '" style="left:' + ((p.s - d0) / D * 100).toFixed(2) + '%;width:' + Math.max(.5, (p.e - p.s) / D * 100).toFixed(2) + '%"></span>').join('') + '</div>' +
+      '<div class="ticks"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>' +
+      (pcs.length ? '<div class="todo">' + pcs.map(p => '<div class="row"><span class="pill" data-t="' + p.type + '">' + LABEL[p.type] + '</span><div class="small"><span class="mono">' + fmtTime(p.s) + '–' + (p.e === d1 ? '24.00' : fmtTime(p.e)) + '</span></div></div>').join('') + '</div>' : '<p class="small muted" style="margin:0">Tidak ada darah tercatat. Hukumnya suci.</p>') +
+      (evs.length ? '<div class="todo">' + evs.map(e => '<div class="row"><span class="pill" data-t="mandi">' + (e.kind === 'mandi' ? 'Mandi' : 'Shalat') + '</span><div class="small"><span class="mono">' + fmtTime(e.time) + '</span> · ' + esc(e.text) + '</div></div>').join('') + '</div>' : '') +
+      (d1 > now && predAt(Math.max(d0, now), d1).length ? '<p class="small" style="margin:0"><span class="pill" data-t="haid">Perkiraan haid</span> ' + predAt(Math.max(d0, now), d1).map(p => esc(fmtRange(p.start, p.end))).join('; ') + '. Ini hanya perkiraan dari adat; hukumnya ditentukan oleh darah yang benar-benar keluar.</p>' : '') +
+      '<p class="small muted" style="margin:0">Jadwal shalat (' + esc(data.settings.city || 'koordinat') + '): Subuh ' + fmtTime(pt.subuh) + ' · Dzuhur ' + fmtTime(pt.dzuhur) + ' · Ashar ' + fmtTime(pt.ashar) + ' · Maghrib ' + fmtTime(pt.maghrib) + ' · Isya ' + fmtTime(pt.isya) + '</p>' +
+      dayActions(d0) + '</div>';
+  } else {
+    h += '<p class="small muted">Ketuk tanggal untuk melihat rincian, atau untuk mencatat darah langsung di tanggal itu.</p>';
+  }
+  h += predListHtml();
+  el.innerHTML = h;
+  document.getElementById('calPrev').onclick = () => { const d = new Date(calMonth); calMonth = new Date(d.getFullYear(), d.getMonth() - 1, 1).getTime(); renderKalender(); };
+  document.getElementById('calNext').onclick = () => { const d = new Date(calMonth); calMonth = new Date(d.getFullYear(), d.getMonth() + 1, 1).getTime(); renderKalender(); };
+  el.querySelectorAll('[data-day]').forEach(b => b.onclick = () => { calSel = +b.dataset.day; renderKalender(); const det = el.querySelector('.card:nth-child(2)'); if (det && det.scrollIntoView) det.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); });
+  bindDayActions(el);
+}
+
+// Tombol pencatatan langsung dari tanggal kalender
+function dayActions(d0) {
+  const now = Date.now();
+  if (d0 > now) return '<p class="small muted" style="margin:0">Tanggal ini belum terjadi, jadi belum bisa dicatat.</p>';
+  const open = data.bloods.find(b => b.end == null);
+  const d1 = addDays(d0, 1);
+  const recs = data.bloods.filter(b => b.start < d1 && (b.end == null ? now : b.end) > d0);
+  let h = '<div class="day-acts">';
+  if (open && d1 > open.start) h += '<button class="btn clean sm" type="button" data-act="stop" data-d="' + d0 + '">Darah berhenti di tanggal ini</button>';
+  if (!open || d0 < open.start) h += '<button class="btn blood sm" type="button" data-act="start" data-d="' + d0 + '">Darah mulai di tanggal ini</button>';
+  recs.forEach(r => { h += '<button class="btn sm" type="button" data-act="edit" data-id="' + esc(r.id) + '">Ubah catatan ' + esc(fmtDate(r.start, false)) + '</button>'; });
+  return h + '</div>';
+}
+function bindDayActions(root) {
+  root.querySelectorAll('[data-act]').forEach(b => b.onclick = () => {
+    const d = +b.dataset.d;
+    if (b.dataset.act === 'start') openBlood(null, { start: Math.min(Date.now(), d + 8 * H) });
+    else if (b.dataset.act === 'stop') openStop(Math.min(Date.now(), d + 8 * H));
+    else if (b.dataset.act === 'edit') openBlood(data.bloods.find(x => x.id === b.dataset.id));
+  });
+}
+
+function predListHtml() {
+  const now = Date.now();
+  const preds = R.forecast.filter(p => p.end > now).slice(0, 4);
+  let h = '<div class="card"><h3>Prediksi haid berikutnya</h3>';
+  if (!R.forecast.length) return h + '<p class="small muted" style="margin:0">Prediksi muncul setelah satu haid tercatat.</p></div>';
+  const rough = R.forecast[0].rough;
+  if (R.late) h += '<p class="small" style="margin:0;color:var(--warn)">Menurut adat, haid seharusnya mulai ' + esc(fmtDT(R.forecast[0].start)) + ', tetapi belum ada darah yang dicatat. Bila darah sudah keluar, catat sekarang.</p>';
+  h += '<div class="pred-list">' + preds.map((p, i) => '<div class="pred-item"><span><b>' + esc(fmtDate(p.start)) + '</b> <span class="muted small">' + esc(fmtTime(p.start)) + '</span></span><span class="small muted">sampai ' + esc(fmtDate(p.end, false)) + ' · ' + esc(fmtDur(p.haid)) + '</span></div>').join('') + '</div>' +
+    '<p class="small muted" style="margin:0">' + (rough
+      ? '<b>Perkiraan awal.</b> Baru satu haid tercatat, sehingga adat suci belum diketahui. Haid berikutnya diperkirakan ' + esc(String(Math.round(Math.max(16, Math.min(90, +data.settings.siklus || 30))))) + ' hari setelah awal haid terakhir (bisa diubah di menu Lainnya), dengan lama haid sama seperti haid terakhir. Setelah haid kedua tercatat, prediksi memakai adat yang sebenarnya.'
+      : 'Dihitung dari adat haid dan suci terakhir' + (R.adat.haid && R.adat.haid.pattern || R.adat.suci && R.adat.suci.pattern ? ', mengikuti urutan adat yang berulang' : '') + '.') +
+    ' Ini hanya perkiraan: yang menentukan hukum adalah darah yang benar-benar keluar.</p></div>';
+  return h;
+}
+
+function renderHukum() {
+  const el = document.getElementById('v-hukum');
+  const items = [];
+  for (const x of R.timeline) items.push({ time: x.start, seg: x });
+  for (const e of R.allEvents) if (e.time <= R.now + 16 * D) items.push({ time: e.time, ev: e });
+  items.sort((a, b) => b.time - a.time || (a.ev ? -1 : 1));
+  const f = lawFilter;
+  const filt = items.filter(i => f === 'semua' || (f === 'haid' && i.seg && (i.seg.type === 'haid' || i.seg.type === 'nifas' || i.seg.type === 'naqa' || i.seg.type === 'mutahayyirah')) || (f === 'ist' && i.seg && i.seg.type === 'istihadhah') || (f === 'ibadah' && i.ev));
+  let h = '<div class="card"><h2>Riwayat hukum</h2><p class="small muted" style="margin:0">Setiap keputusan disertai alasan dan rujukannya. Hasil ini dihitung ulang setiap kali catatan berubah.</p>' +
+    '<div class="chips">' + [['semua', 'Semua'], ['haid', 'Haid & nifas'], ['ist', 'Istihadhah'], ['ibadah', 'Mandi & shalat']].map(([k, l]) => '<button class="chip" type="button" data-f="' + k + '" aria-pressed="' + (f === k) + '">' + l + '</button>').join('') + '</div></div>';
+  if (!filt.length) h += '<div class="empty">Belum ada yang bisa ditampilkan.</div>';
+  else h += '<div class="card law">' + filt.slice(0, 200).map(i => {
+    if (i.seg) {
+      const s = i.seg;
+      return '<div class="law-item"><span class="dot t-' + s.type + '"></span><div class="body"><div class="head"><span class="pill" data-t="' + s.type + '">' + (s.type === 'naqa' ? 'Bersih di sela ' + (s.parent || 'haid') : LABEL[s.type]) + '</span>' + (s.provisional ? '<span class="pill prov">Sementara</span>' : '') + '<span class="small muted num">' + esc(fmtDur(s.end - s.start)) + '</span></div>' +
+        '<div class="range">' + esc(fmtRange(s.start, s.end)) + '</div><p class="small">' + esc(s.reason || '') + '</p>' + refHtml(s.ref) + '</div></div>';
+    }
+    const e = i.ev;
+    return '<div class="law-item"><span class="dot ev"></span><div class="body"><div class="head"><span class="pill" data-t="mandi">' + (e.kind === 'mandi' ? 'Mandi' : e.kind === 'qadha' ? 'Qadha' : e.kind === 'shalat' ? 'Shalat' : 'Info') + '</span>' + (e.time > R.now ? '<span class="pill prov">Nanti</span>' : '') + '</div><div class="range">' + esc(fmtDT(e.time)) + '</div><p class="small">' + esc(e.text) + '</p>' + refHtml(e.ref) + '</div></div>';
+  }).join('') + '</div>';
+  el.innerHTML = h;
+  el.querySelectorAll('[data-f]').forEach(b => b.onclick = () => { lawFilter = b.dataset.f; renderHukum(); });
+}
+
+const GUIDE = [
+  ['Masa haid', 'Paling sedikit 24 jam, paling lama 15 hari 15 malam (360 jam). Darah yang putus-putus tetap haid bila jumlahnya mencapai 24 jam dalam 15 hari. Usia minimal haid 9 tahun kurang 16 hari (Hijriyah).', 'Paling sedikit haid dua puluh empat\nKeluar terus di sehari semalam\nMaksimal haid itu lima belas hari\nWalau putus-putus namun harus pasti'],
+  ['Masa suci', 'Suci yang memisahkan dua haid paling sedikit 15 hari 15 malam, paling lama tidak terbatas.', 'Minimal masa suci kedua haidnya\nLima belas hari beserta malamnya'],
+  ['Suci kurang dari 15 hari', 'Jika darah kedua keluar sesudah 15 hari dari awal haid, ia bukan lanjutan. Masa sucinya disempurnakan menjadi 15 hari, sisanya haid. Jika keluar sebelum 15 hari, ia lanjutan: bila jumlahnya tidak lewat 15 hari, haid semua; bila lewat, hukumnya istihadhah.', 'Jika suci tidak sampai lima belas\nMaka sempurnakan jadi lima belas'],
+  ['Darah lebih dari 15 hari (istihadhah)', 'Menurut pendapat yang dipakai aplikasi ini (qaul tsani, untuk memudahkan), haid disamakan dengan adat haid terakhir dan suci disamakan dengan adat suci terakhir, tanpa melihat warna darah. Jika adatnya membentuk urutan yang sudah berulang dua kali, ikuti urutannya. Pemula: haid 24 jam, suci 29 hari.', 'Maksimal masa haid lima belas hari\nJika lebih maka haruslah kembali\nPada haid juga suci yang terakhir'],
+  ['Waktu mandi mustahadhah', 'Pada siklus pertama istihadhah, mandi setelah lewat 15 hari, lalu qadha shalat yang ditinggalkan di luar masa haid. Siklus berikutnya langsung mandi begitu masa adat haid selesai.', 'Mustahadlah itu diwajibkan mandi\nUsai lima belas di pertama kali'],
+  ['Tidak ada darah di masa adat', 'Haid pindah ke darah sesudahnya, kecuali darah sebelumnya lebih dekat. Bila di masa adat hanya sebagian yang berdarah, haidnya hanya darah itu.', 'Tak ada darah saat adatnya\nPindahlah haidnya ke setelahnya\nTerkecuali darah yang lalu\nLebihlah dekat dari yang baru'],
+  ['Lupa adat (mutahayyirah)', 'Wanita yang sudah pernah haid tetapi lupa adatnya, baik jumlah maupun waktunya, lalu darahnya lebih dari 15 hari, disebut mutahayyirah. Berlaku hukum haid dalam segala hal kecuali talak, membaca Al-Qur\'an dengan niat belajar, ibadah yang butuh niat (wajib shalat dan puasa), dan masuk masjid untuk ibadah. Setiap bulan wajib qadha shalat 2 hari. Sebagian ulama berpendapat haidnya hanya sehari semalam di awal tiap bulan Hijriyah.', 'Mereka yang termasuk mutahayyirah\nBerhukum haid selain empat perkara\n...\nMutahayyirah terjadi dikarenakan\nTidak mencatat haid di setiap bulan'],
+  ['Nifas', 'Darah setelah melahirkan atau keguguran (termasuk alaqah dan mudghah). Paling lama 60 hari dihitung sejak melahirkan. Bila darah baru keluar 15 hari atau lebih setelah melahirkan, itu haid. Antara nifas dan haid tidak disyaratkan suci 15 hari.', 'Nifas itu darah usai melahirkan\nSetelahnya cesar atau keguguran'],
+  ['Cara memastikan bersih', 'Tempelkan kapas ke kemaluan bagian dalam (yang tidak terlihat saat jongkok). Bercak sekalipun keruh berarti belum bersih. Sebagai kehati-hatian, catat waktu suci pada saat terakhir masih melihat bercak.', 'Cara untuk tahu berhenti darahnya\nTempel kapas di kemaluan dalamnya'],
+  ['Shalat saat haid datang dan pergi', 'Haid datang setelah masuk waktu dan sempat untuk shalat yang paling ringan: shalat itu wajib diqadha. Haid berakhir dan masih ada waktu untuk takbir: wajib shalat waktu itu, ditambah shalat sebelumnya bila bisa dijamak (Dzuhur dengan Ashar, Maghrib dengan Isya).', 'Wajib shalat bila halangan berakhir\nJika masih ada waktu untuk takbir'],
+];
+
+function renderLainnya() {
+  const el = document.getElementById('v-lainnya');
+  const s = data.settings;
+  const opts = CITIES.map(c => '<option value="' + esc(c[0]) + '"' + (s.city === c[0] ? ' selected' : '') + '>' + esc(c[0]) + '</option>').join('') + '<option value="__custom"' + (CITIES.some(c => c[0] === s.city) ? '' : ' selected') + '>Koordinat lain…</option>';
+  const custom = !CITIES.some(c => c[0] === s.city);
+  let h = '<div class="card"><h2>Pengaturan</h2>' +
+    '<div class="row2"><label class="field" for="sCity"><span>Lokasi untuk jadwal shalat</span><select id="sCity">' + opts + '</select></label>' +
+    '<label class="field" for="sMin"><span>Lama shalat paling ringan (menit)</span><input type="number" id="sMin" min="1" max="30" value="' + esc(s.minShalat) + '"></label></div>' +
+    '<div class="row2" id="sCoords"' + (custom ? '' : ' hidden') + '><label class="field" for="sLat"><span>Lintang</span><input type="number" step="0.0001" id="sLat" value="' + esc(s.lat) + '"></label><label class="field" for="sLng"><span>Bujur</span><input type="number" step="0.0001" id="sLng" value="' + esc(s.lng) + '"></label></div>' +
+    '<p class="small muted" style="margin:0">Jadwal shalat dihitung dengan sudut Subuh 20° dan Isya 18°, Ashar mazhab Syafi\'i, ditambah ihtiyath 2 menit. Zona waktu mengikuti perangkat Anda.</p>' +
+    '<label class="field" for="sSiklus"><span>Panjang siklus untuk perkiraan awal (hari)</span><input type="number" id="sSiklus" min="16" max="90" value="' + esc(s.siklus || 30) + '"></label>' +
+    '<p class="small muted" style="margin:0">Dipakai untuk memprediksi haid berikutnya bila baru satu haid tercatat. Hitung dari awal haid sampai awal haid berikutnya. Bila tidak tahu, biarkan 30.</p>' +
+    '<label class="check" for="sLupa"><input type="checkbox" id="sLupa"' + (s.lupaAdat ? ' checked' : '') + '> Sudah pernah haid sebelum catatan pertama, tetapi lupa adatnya</label>' +
+    '<p class="small muted" style="margin:0">Pilihan ini hanya berpengaruh bila darah keluar lebih dari 15 hari sebelum ada adat yang tercatat. Tanpa pilihan ini Anda dianggap pemula (haid 24 jam, suci 29 hari). Dengan pilihan ini berlaku hukum mutahayyirah (Jilid 2 Bab I–J). Setelah Anda mencatat satu haid normal, adat dari catatan itulah yang dipakai.</p></div>';
+
+  h += '<div class="card"><h2>Kaidah ringkas</h2>' + GUIDE.map(g => '<details class="guide"><summary>' + esc(g[0]) + '</summary><p class="small" style="margin:0">' + esc(g[1]) + '</p><p class="bait">' + esc(g[2]) + '</p></details>').join('') +
+    '<p class="small muted" style="margin:0">Sumber: <i>Dan Mereka Bertanya Kepadamu Tentang Haid</i> karya Nur Hasyim S. Anam (Edisi 2017, Jilid 1–3) dan syair <i>Bait-Bait Haid</i>.</p></div>';
+
+  h += '<div class="card"><h2>Batasan aplikasi</h2><ul class="rules small">' +
+    '<li>Istihadhah memakai qaul tsani (kembali ke adat terakhir tanpa membedakan warna darah). Bila Anda ingin memakai pendapat tamyiz (mu\'tamad), tanyakan kepada ustadzah.</li>' +
+    '<li>Mutahayyirah hanya untuk yang lupa adat sama sekali (jumlah dan waktunya), lewat pilihan di Pengaturan. Yang ingat sebagian (hanya jumlah atau hanya waktunya) belum dihitung. Darah yang menyertai kontraksi sebelum melahirkan juga belum ditangani.</li>' +
+    '<li>Hasil ini membantu menghitung, bukan pengganti bertanya kepada guru. Untuk keluhan kesehatan, periksakan diri ke dokter.</li></ul></div>';
+
+  h += '<div class="card"><h2>Cadangan data</h2><p class="small muted" style="margin:0">' + (storeMode === 'db' ? 'Catatan tersimpan di akun Anda dan hanya bisa dibaca oleh Anda.' : 'Catatan tersimpan di peramban perangkat ini. Buat cadangan agar tidak hilang bila data peramban dihapus.') + '</p>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="bExport" type="button">Ekspor (JSON)</button><button class="btn sm" id="bImport" type="button">Impor</button><button class="btn sm danger" id="bReset" type="button">Hapus semua catatan</button></div>' +
+    '<div id="bArea"></div></div>';
+  el.innerHTML = h;
+
+  const sCity = document.getElementById('sCity');
+  sCity.onchange = () => {
+    if (sCity.value === '__custom') { document.getElementById('sCoords').hidden = false; data.settings.city = 'Koordinat'; queueWrite(); return; }
+    const c = CITIES.find(x => x[0] === sCity.value);
+    commit(d => { d.settings.city = c[0]; d.settings.lat = c[1]; d.settings.lng = c[2]; }, 'Lokasi diubah ke ' + c[0]);
+  };
+  const saveCoords = () => { const la = parseFloat(document.getElementById('sLat').value), lo = parseFloat(document.getElementById('sLng').value); if (isFinite(la) && isFinite(lo) && Math.abs(la) < 66 && Math.abs(lo) <= 180) commit(d => { d.settings.city = 'Koordinat'; d.settings.lat = la; d.settings.lng = lo; }, 'Koordinat disimpan'); else toast('Lintang harus antara -66 dan 66, bujur antara -180 dan 180.'); };
+  document.getElementById('sLat').onchange = saveCoords; document.getElementById('sLng').onchange = saveCoords;
+  document.getElementById('sSiklus').onchange = e => { const v = Math.max(16, Math.min(90, parseInt(e.target.value, 10) || 30)); commit(d => { d.settings.siklus = v; }, 'Siklus perkiraan: ' + v + ' hari'); };
+  document.getElementById('sLupa').onchange = e => { const v = e.target.checked; commit(d => { d.settings.lupaAdat = v; }, v ? 'Pilihan lupa adat diaktifkan' : 'Pilihan lupa adat dimatikan'); };
+  document.getElementById('sMin').onchange = e => { const v = Math.max(1, Math.min(30, parseInt(e.target.value, 10) || 5)); commit(d => { d.settings.minShalat = v; }); };
+
+  const area = document.getElementById('bArea');
+  document.getElementById('bExport').onclick = async () => {
+    const json = JSON.stringify({ app: 'catatan-haid', v: 1, exportedAt: new Date().toISOString(), bloods: data.bloods, births: data.births, settings: data.settings }, null, 2);
+    let ok = false;
+    try { if (window.claude && window.claude.use) { const dl = await window.claude.use('downloads'); if (dl) { await dl.save({ filename: 'catatan-haid-' + toInput(Date.now()).slice(0, 10) + '.json', data: json }); ok = true; toast('Cadangan disimpan'); } } } catch (e) { if (e && e.code === 'declined') { ok = true; } }
+    if (!ok) {
+      area.innerHTML = '<label class="field" for="bOut"><span>Salin teks ini dan simpan di tempat aman</span><textarea id="bOut" readonly></textarea></label><button class="btn sm" id="bCopy" type="button">Salin</button>';
+      const ta = document.getElementById('bOut'); ta.value = json;
+      document.getElementById('bCopy').onclick = () => { navigator.clipboard && navigator.clipboard.writeText(json).then(() => toast('Disalin'), () => { ta.select(); toast('Tekan Ctrl+C untuk menyalin'); }); if (!navigator.clipboard) ta.select(); };
+    }
+  };
+  document.getElementById('bImport').onclick = () => {
+    area.innerHTML = '<label class="field" for="bIn"><span>Tempel isi cadangan JSON, atau pilih berkasnya</span><textarea id="bIn"></textarea></label><input type="file" id="bFile" accept=".json,application/json"><div style="display:flex;gap:8px"><button class="btn primary sm" id="bDoImport" type="button">Ganti catatan dengan cadangan ini</button></div><p class="err" id="bErr" hidden></p>';
+    document.getElementById('bFile').onchange = ev => { const f = ev.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { document.getElementById('bIn').value = r.result; }; r.readAsText(f); };
+    document.getElementById('bDoImport').onclick = () => {
+      const err = document.getElementById('bErr');
+      try {
+        const v = normalize(JSON.parse(document.getElementById('bIn').value));
+        if (isEmpty(v)) throw new Error('kosong');
+        commit(d => { d.bloods = v.bloods; d.births = v.births; d.settings = v.settings; }, 'Cadangan dimuat: ' + v.bloods.length + ' catatan darah');
+      } catch (e) { err.hidden = false; err.textContent = 'Teks ini bukan cadangan Catatan Haid yang valid. Pastikan seluruh isi berkas ikut tertempel.'; }
+    };
+  };
+  document.getElementById('bReset').onclick = () => {
+    area.innerHTML = '<p class="err">Semua catatan darah dan melahirkan akan dihapus permanen. Buat cadangan dulu bila masih diperlukan.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn danger sm" id="bResetYes" type="button">Ya, hapus semuanya</button><button class="btn sm" id="bResetNo" type="button">Batal</button></div>';
+    document.getElementById('bResetYes').onclick = () => { demo = false; commit(d => { d.bloods = []; d.births = []; }, 'Semua catatan dihapus'); };
+    document.getElementById('bResetNo').onclick = () => { area.innerHTML = ''; };
+  };
+}
+
+// ---------------- Form ----------------
+function openSheet(html, bind) {
+  const wrap = document.getElementById('sheetWrap'), sh = document.getElementById('sheet');
+  sh.innerHTML = html; wrap.hidden = false; bind(sh);
+  const first = sh.querySelector('input, select, button'); if (first) first.focus();
+}
+function closeSheet() { document.getElementById('sheetWrap').hidden = true; }
+document.getElementById('sheetWrap').addEventListener('click', e => { if (e.target.id === 'sheetWrap') closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+function openBlood(rec, opts) {
+  opts = opts || {};
+  const isNew = !rec;
+  const adatH = R && R.adat.haid ? R.adat.haid.value : 7 * D;
+  let start = rec ? rec.start : (opts.start != null ? opts.start : Date.now() - (opts.past ? adatH + 3 * D : 2 * H));
+  if (!rec && opts.past) start = startOfDay(start) + 5 * H;
+  let end = rec ? rec.end : (opts.open || (opts.start != null && !opts.past && start > Date.now() - 2 * D) ? null : Math.min(Date.now(), start + adatH));
+  const openNow = end == null;
+  const durs = [3, 4, 5, 6, 7, 8, 10, 15];
+  openSheet('<h2>' + (isNew ? 'Catat darah' : 'Ubah catatan darah') + '</h2>' +
+    dtpHtml('fs', start, 'Darah mulai keluar') +
+    '<label class="check" for="fOpen"><input type="checkbox" id="fOpen"' + (openNow ? ' checked' : '') + '> Darah masih keluar sampai sekarang</label>' +
+    '<div id="fEndWrap"' + (openNow ? ' hidden' : '') + ' class="stack" style="gap:10px">' +
+    '<div class="field"><span>Lama darah keluar (cepat)</span><div class="chips">' + durs.map(n => '<button type="button" class="chip" data-dur="' + n + '" aria-pressed="false">' + n + ' hari</button>').join('') + '</div></div>' +
+    dtpHtml('fe', end || Date.now(), 'Darah berhenti (terakhir terlihat bercak)') +
+    '<p class="small muted" style="margin:0" id="fLen"></p></div>' +
+    '<p class="err" id="fErr" hidden></p>' +
+    '<div class="acts">' + (isNew ? '' : '<button class="btn danger" id="fDel" type="button">Hapus</button>') + '<button class="btn" id="fCancel" type="button">Batal</button><button class="btn primary" id="fSave" type="button">Simpan</button></div>', sh => {
+    const op = sh.querySelector('#fOpen');
+    const showLen = () => { const s = getDtp('fs'), e = getDtp('fe'); sh.querySelector('#fLen').textContent = s != null && e != null && e > s ? 'Lama darah: ' + fmtDur(e - s) : ''; };
+    bindDtp(sh, 'fs', showLen); bindDtp(sh, 'fe', () => { sh.querySelectorAll('[data-dur]').forEach(b => b.setAttribute('aria-pressed', 'false')); showLen(); });
+    sh.querySelectorAll('[data-dur]').forEach(b => b.onclick = () => {
+      const s = getDtp('fs'); if (s == null) return;
+      setDtp('fe', Math.min(Date.now(), s + (+b.dataset.dur) * D));
+      sh.querySelectorAll('[data-dur]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); showLen();
+    });
+    showLen();
+    op.onchange = () => { sh.querySelector('#fEndWrap').hidden = op.checked; };
+    sh.querySelector('#fCancel').onclick = closeSheet;
+    const del = sh.querySelector('#fDel');
+    if (del) del.onclick = () => {
+      if (del.dataset.confirm) { closeSheet(); commit(d => { d.bloods = d.bloods.filter(b => b.id !== rec.id); }, 'Catatan dihapus'); }
+      else { del.dataset.confirm = '1'; del.textContent = 'Tekan lagi untuk menghapus'; }
+    };
+    sh.querySelector('#fSave').onclick = () => {
+      const err = sh.querySelector('#fErr');
+      const s = getDtp('fs');
+      const e = op.checked ? null : getDtp('fe');
+      const fail = m => { err.hidden = false; err.textContent = m; };
+      if (s == null) return fail('Isi waktu darah mulai keluar.');
+      if (s > Date.now() + MIN) return fail('Waktu mulai tidak boleh di masa depan.');
+      if (!op.checked && e == null) return fail('Isi waktu darah berhenti, atau centang "Darah masih keluar".');
+      if (e != null && e <= s) return fail('Waktu berhenti harus setelah waktu mulai.');
+      if (e != null && e > Date.now() + MIN) return fail('Waktu berhenti tidak boleh di masa depan.');
+      const others = data.bloods.filter(b => !rec || b.id !== rec.id);
+      if (op.checked && others.some(b => b.end == null)) return fail('Sudah ada catatan darah yang masih keluar. Isi dulu waktu berhentinya.');
+      if (op.checked && others.some(b => b.start > s)) return fail('Ada catatan lain setelah waktu ini, jadi darah ini tidak mungkin masih keluar. Isi waktu berhentinya.');
+      const ee = e == null ? Date.now() : e;
+      const clash = others.find(b => s < (b.end == null ? Date.now() : b.end) && ee > b.start);
+      if (clash) return fail('Bertumpuk dengan catatan ' + fmtRange(clash.start, clash.end == null ? Date.now() : clash.end) + '. Ubah salah satunya.');
+      closeSheet();
+      commit(d => {
+        if (rec) { const r = d.bloods.find(b => b.id === rec.id) || rec; r.start = s; r.end = e; if (!d.bloods.includes(r)) d.bloods.push(r); }
+        else d.bloods.push({ id: uid(), start: s, end: e });
+      }, isNew ? 'Catatan ditambahkan' : 'Catatan diperbarui');
+    };
+  });
+}
+
+function openBirth(rec) {
+  const isNew = !rec;
+  openSheet('<h2>' + (isNew ? 'Catat melahirkan / keguguran' : 'Ubah catatan melahirkan') + '</h2>' +
+    '<label class="field" for="bKind"><span>Jenis</span><select id="bKind"><option value="lahir"' + (rec && rec.kind === 'keguguran' ? '' : ' selected') + '>Melahirkan (termasuk cesar)</option><option value="keguguran"' + (rec && rec.kind === 'keguguran' ? ' selected' : '') + '>Keguguran (alaqah / mudghah)</option></select></label>' +
+    '<label class="field" for="bTime"><span>Waktu janin keluar seluruhnya</span><input type="datetime-local" id="bTime" value="' + toInput(rec ? rec.time : Date.now()) + '"></label>' +
+    '<p class="small muted" style="margin:0">Hitungan 60 hari nifas dimulai dari waktu ini, sedangkan yang dihukumi nifas dimulai sejak darah keluar. Catat darahnya di menu Catatan.</p>' +
+    '<p class="err" id="bErr2" hidden></p>' +
+    '<div class="acts">' + (isNew ? '' : '<button class="btn danger" id="bDel" type="button">Hapus</button>') + '<button class="btn" id="bCancel" type="button">Batal</button><button class="btn primary" id="bSave" type="button">Simpan</button></div>', sh => {
+    sh.querySelector('#bCancel').onclick = closeSheet;
+    const del = sh.querySelector('#bDel');
+    if (del) del.onclick = () => {
+      if (del.dataset.confirm) { closeSheet(); commit(d => { d.births = d.births.filter(b => b.id !== rec.id); }, 'Catatan dihapus'); }
+      else { del.dataset.confirm = '1'; del.textContent = 'Tekan lagi untuk menghapus'; }
+    };
+    sh.querySelector('#bSave').onclick = () => {
+      const t = fromInput(sh.querySelector('#bTime').value), kind = sh.querySelector('#bKind').value;
+      const err = sh.querySelector('#bErr2');
+      if (t == null || t > Date.now() + MIN) { err.hidden = false; err.textContent = 'Isi waktu yang sudah lewat.'; return; }
+      closeSheet();
+      commit(d => { if (rec) { const r = d.births.find(b => b.id === rec.id); if (r) { r.time = t; r.kind = kind; } } else d.births.push({ id: uid(), time: t, kind }); }, 'Tersimpan');
+    };
+  });
+}
+
+// ---------------- Navigasi ----------------
+function show(v) {
+  if (!VIEWS.includes(v)) v = 'hariini';
+  view = v;
+  VIEWS.forEach(k => { document.getElementById('v-' + k).hidden = k !== v; });
+  document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.v === v)));
+  if (location.hash.slice(1) !== v) { try { history.replaceState(null, '', '#' + v); } catch (e) { /* abaikan */ } }
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => show(t.dataset.v));
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+document.getElementById('demoClear').onclick = () => { demo = false; data = { bloods: [], births: [], settings: data.settings }; document.getElementById('demoBanner').hidden = true; queueWrite(); render(); show('hariini'); toast('Contoh dihapus. Silakan mulai mencatat.'); };
+
+let toastT = null;
+function toast(msg) { const el = document.getElementById('toast'); el.textContent = msg; el.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { el.hidden = true; }, 2600); }
+
+setInterval(() => { if (document.getElementById('sheetWrap').hidden && !document.activeElement.matches('input, select, textarea')) render(); }, 60000);
+
+show(location.hash.slice(1) || 'hariini');
+// tampilkan sesuatu segera (salinan lokal / contoh), lalu sambungkan ke akun
+const cached = lsGet();
+if (cached) { data = normalize(cached); }
+if (isEmpty(data) && !cached) loadDemo();
+document.getElementById('demoBanner').hidden = !demo;
+render();
+initStore();
+})();
+</script>
+
+</body>
+</html>
